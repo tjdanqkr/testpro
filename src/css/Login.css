@@ -5,7 +5,12 @@
 .onLogin form{
   display: grid;
 }
-
+.Join{
+  display: flex;
+}
+.Join form{
+  display: grid;
+}
 .Back{
   
   position:absolute;
