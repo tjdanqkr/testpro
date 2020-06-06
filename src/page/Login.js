@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import "../css/Login.css";
 import { FiUserPlus, FiMap, FiUserMinus } from "react-icons/fi";
 
-const Login = (Loginstate) => {
+const Login = Loginstate => {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
-  const [onLogin, setOnLogin] = useState(Loginstate.Loginstate);
+  const [onLogin, setOnLogin] = useState("login");
 
-  const OnSubmit = (e) => {
+  const OnSubmit = e => {
     e.preventdefault();
     const post = {
       id: id,
@@ -22,8 +22,8 @@ const Login = (Loginstate) => {
       },
       body: JSON.stringify(post),
     })
-      .then((response) => response.text())
-      .then((message) => {
+      .then(response => response.text())
+      .then(message => {
         console.log(message);
         if (message === "re") {
           alert("다시 시도");
@@ -36,28 +36,29 @@ const Login = (Loginstate) => {
   };
 
   return (
-    <div className={onLogin}>
-      <form onSubmit={OnSubmit}>
-        <input
-          type="text"
-          name="id"
-          onChange={(e) => setId(e.target.value)}
-          placeholder="id"
-        />
+    <div className="Back">
+      <div className="onLogin">
+        <form onSubmit={OnSubmit}>
+          <input
+            type="text"
+            name="id"
+            onChange={e => setId(e.target.value)}
+            placeholder="id"
+          />
 
-        <input
-          type="password"
-          name="pw"
-          onChange={(e) => setPw(e.target.value)}
-          placeholder="password"
-        />
+          <input
+            type="password"
+            name="pw"
+            onChange={e => setPw(e.target.value)}
+            placeholder="password"
+          />
 
-        <input type="submit" value="Login" />
-        <Link to="/join">
-          <FiUserPlus></FiUserPlus>
-          <h3>join</h3>
-        </Link>
-      </form>
+          <input type="submit" value="Login" />
+          <Link to="/join">
+            <button className="joinbutton">join</button>
+          </Link>
+        </form>
+      </div>
     </div>
   );
 };

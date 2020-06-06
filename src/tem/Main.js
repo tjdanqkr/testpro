@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Back from "./Back";
+
 import Front from "./Front";
 
-function Main() {
+function Main(props) {
+
   return (
     <div className="Main">
       <Front></Front>
-      <Back></Back>
+
     </div>
   );
 }

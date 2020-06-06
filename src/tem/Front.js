@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Map from "../page/Map";
 import Header from "../page/Header";
 import Login from "../page/Login";
-import Back from "./Back";
+
 
 function Front() {
   return (
