@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/testpro/static/css/main.9b677746.chunk.css",
+    "main.js": "/testpro/static/js/main.2a6b3dc3.chunk.js",
+    "main.js.map": "/testpro/static/js/main.2a6b3dc3.chunk.js.map",
+    "runtime-main.js": "/testpro/static/js/runtime-main.99f77e30.js",
+    "runtime-main.js.map": "/testpro/static/js/runtime-main.99f77e30.js.map",
+    "static/js/2.30cc9ebc.chunk.js": "/testpro/static/js/2.30cc9ebc.chunk.js",
+    "static/js/2.30cc9ebc.chunk.js.map": "/testpro/static/js/2.30cc9ebc.chunk.js.map",
+    "index.html": "/testpro/index.html",
+    "precache-manifest.d861eb06f04993a132385ce1c1793b7d.js": "/testpro/precache-manifest.d861eb06f04993a132385ce1c1793b7d.js",
+    "service-worker.js": "/testpro/service-worker.js",
+    "static/css/main.9b677746.chunk.css.map": "/testpro/static/css/main.9b677746.chunk.css.map",
+    "static/js/2.30cc9ebc.chunk.js.LICENSE.txt": "/testpro/static/js/2.30cc9ebc.chunk.js.LICENSE.txt",
+    "static/media/dong1.geojson": "/testpro/static/media/dong1.81986e43.geojson"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.99f77e30.js",
+    "static/js/2.30cc9ebc.chunk.js",
+    "static/css/main.9b677746.chunk.css",
+    "static/js/main.2a6b3dc3.chunk.js"
+  ]
+}
