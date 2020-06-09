@@ -1,25 +1,33 @@
-.Action{
-    position: absolute;
-    bottom: 0%;
-    height: 50vh;
-    width: 300px;
-    opacity: 0.9;
-    z-index: 3;
-    background-color: darkred;
+.Action {
+  position: absolute;
+  bottom: 0%;
+
+  width: 300px;
+  opacity: 0.9;
+  z-index: 3;
+  background-color: darkred;
+  display: block;
 }
-.sel{
-    position: absolute;
-    background-color: gray;
-    opacity: 1;
-    width: 95%;
-    margin: 5px;
-    display: block;
+.sel {
+  position: initial;
+  background-color: gray;
+  opacity: 1;
+  width: 95%;
+  margin: 5px;
+  display: block;
 }
-.icons{
-    display: flex;
+.option {
+  background-color: azure;
+  opacity: 1;
+  width: 95%;
+  margin: 5px;
+  height: inherit;
 }
-.icons svg{
-    width: 30px;
-    height: 30px;
-    padding: 5px;
+.icons {
+  display: flex;
+}
+.icons svg {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
 }
