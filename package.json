@@ -9,6 +9,7 @@
     "axios": "^0.19.2",
     "chart.js": "^2.9.3",
     "chartjs": "^0.3.24",
+    "gh-pages": "^3.0.0",
     "immer": "^6.0.9",
     "jquery": "^3.5.1",
     "react": "^16.13.1",
@@ -25,7 +26,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -42,9 +45,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy":{
-    "/api/":{
-      "target":"http://14.32.18.89:8080/"
-    }
-  } 
+  "proxy": "http://192.168.1.145:8080/",
+  "homepage": "https://tjdanqkr.github.io/testpro/"
 }

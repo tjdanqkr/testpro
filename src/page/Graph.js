@@ -25,7 +25,7 @@ function Graph(dong, fa) {
       dong: dong.dong,
     };
 
-    {
+    
       await fetch("/api/graph", {
         method: "POST",
         headers: {
@@ -39,8 +39,8 @@ function Graph(dong, fa) {
           setList(message);
           listset.push(message);
         });
-    }
-    {
+    
+    
       if (graphop === "상권지표") {
         jsondata.push(listset[0].sang);
       } else if (graphop === "집객력") {
@@ -50,7 +50,7 @@ function Graph(dong, fa) {
       } else if (graphop === "성장성") {
         jsondata.push(listset[0].sung);
       }
-    }
+    
 
     const tempLabels = [];
     const tempDatasets = [];
