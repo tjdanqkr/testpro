@@ -2,6 +2,7 @@
   "name": "testyes",
   "version": "0.1.0",
   "private": true,
+  "homepage" : "https://tjdanqkr.github.io/testpro",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -45,6 +46,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://192.168.1.145:8080/",
-  "homepage": "https://tjdanqkr.github.io/testpro/"
+  "proxy" : "http://192.168.1.145:8080/"
+  
 }
