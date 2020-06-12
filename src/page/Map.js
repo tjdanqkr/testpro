@@ -132,12 +132,12 @@ function Map() {
             });
 
             customOverlay.setContent(
-              '<div class="area"><p>' +
+              '<p>' +
                 name +
                 " " +
                 j +
                 "개입니다" +
-                "</p></div>"
+                "</p>"
             );
 
             customOverlay.setPosition(mouseEvent.latLng);

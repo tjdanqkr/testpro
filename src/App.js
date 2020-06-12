@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 function App() {
   return (
     <>
-      <Route exact path="/" component={Main}></Route>
+      <Main></Main>
     </>
   );
 }
