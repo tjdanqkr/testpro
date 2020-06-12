@@ -152,29 +152,31 @@ function Map() {
         }
       });
     };
-  }, [fa]);
+  }, []);
+
+  const josndatamake = async () => {
+    const post = {
+      classes: fa,
+    };
+    await fetch("/api/upjong", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        charset: "utf-8",
+      },
+      body: JSON.stringify(post),
+    })
+      .then((response) => response.text())
+      .then((message) => {
+        setJsondata(JSON.parse(message));
+      });
+  };
   const namei = () => {
     console.log(dong);
   };
   const onsel = (e) => {
     setFa(e.target.value);
-    const post = {
-      classes: e.target.value,
-    };
-    const josndatamake = () => {
-      fetch("/api/upjong", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          charset: "utf-8",
-        },
-        body: JSON.stringify(post),
-      })
-        .then((response) => response.text())
-        .then((message) => {
-          setJsondata(JSON.parse(message));
-        });
-    };
+
     josndatamake();
   };
   const OnSubmit = (e) => {};
@@ -186,11 +188,15 @@ function Map() {
         <select onClick={onsel}>
           <option></option>
           <option value="커피전문점/카페/다방">커피전문점/카페/다방</option>
-          <option value="후라이드/양념치킨">치킨집</option>
           <option value="한식/백반/한정식">한식</option>
-          <option value="족발/보쌈전문">족발</option>
+          <option value="라면김밥분식">분식</option>
           <option value="음식점-일식">일식</option>
+          <option value="편의점">편의점</option>
+          <option value="호프/맥주">호프/맥주</option>
           <option value="중국음식/중국집">중국음식/중국집</option>
+          <option value="패스트푸드">패스트푸드</option>
+          <option value="학원(종합)">학원</option>
+          <option value="안경원">안경원</option>
         </select>
       </div>
 

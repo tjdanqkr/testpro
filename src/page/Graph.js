@@ -55,24 +55,32 @@ function Graph(dong, fa) {
     const tempLabels = [];
     const tempDatasets = [];
     const tempDatasetbackcol = [];
+
     if (jsondata.length !== 0) {
-      for (let i = 0; i < jsondata[0].length; i++) {
-        tempLabels.push(jsondata[0][i].gil);
-        tempDatasets.push(jsondata[0][i].totalscore);
+      try {
+        if (jsondata.status !== 500) {
+          for (let i = 0; i < jsondata[0].length; i++) {
+            tempLabels.push(jsondata[0][i].gil);
+            tempDatasets.push(jsondata[0][i].totalscore);
+          }
+          for (let i = 0; i < tempDatasets.length; i++) {
+            tempDatasetbackcol.push(palete[i]);
+          }
+        }
+      } catch (error) {
+        console.log(error);
       }
-      for (let i = 0; i < tempDatasets.length; i++) {
-        tempDatasetbackcol.push(palete[i]);
-      }
+
+      setData(
+        produce((draft) => {
+          draft.labels = tempLabels;
+          draft.datasets[0]["data"] = tempDatasets;
+          draft.datasets[0]["borderColor"] = tempDatasetbackcol;
+          draft.datasets[0]["backgroundColor"] = tempDatasetbackcol;
+          return draft;
+        })
+      );
     }
-    setData(
-      produce((draft) => {
-        draft.labels = tempLabels;
-        draft.datasets[0]["data"] = tempDatasets;
-        draft.datasets[0]["borderColor"] = tempDatasetbackcol;
-        draft.datasets[0]["backgroundColor"] = tempDatasetbackcol;
-        return draft;
-      })
-    );
   }
   const palete = [
     "rgb(255,155,255)",
