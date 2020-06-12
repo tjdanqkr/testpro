@@ -132,12 +132,7 @@ function Map() {
             });
 
             customOverlay.setContent(
-              '<p>' +
-                name +
-                " " +
-                j +
-                "개입니다" +
-                "</p>"
+              "<p>" + name + " " + j + "개입니다" + "</p>"
             );
 
             customOverlay.setPosition(mouseEvent.latLng);
@@ -152,31 +147,30 @@ function Map() {
         }
       });
     };
-  }, []);
+  }, [fa]);
 
-  const josndatamake = async () => {
-    const post = {
-      classes: fa,
-    };
-    await fetch("/api/upjong", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        charset: "utf-8",
-      },
-      body: JSON.stringify(post),
-    })
-      .then((response) => response.text())
-      .then((message) => {
-        setJsondata(JSON.parse(message));
-      });
-  };
   const namei = () => {
     console.log(dong);
   };
   const onsel = (e) => {
     setFa(e.target.value);
-
+    const josndatamake = async () => {
+      const post = {
+        classes: e.target.value,
+      };
+      await fetch("/api/upjong", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          charset: "utf-8",
+        },
+        body: JSON.stringify(post),
+      })
+        .then((response) => response.text())
+        .then((message) => {
+          setJsondata(JSON.parse(message));
+        });
+    };
     josndatamake();
   };
   const OnSubmit = (e) => {};

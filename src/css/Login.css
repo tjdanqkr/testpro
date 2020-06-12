@@ -1,26 +1,141 @@
-
 .onLogin {
   display: flex;
+  position: relative;
+  top: 18px;
+  background: #ffffff;
+  max-width: 360px;
+  margin: 0 auto 40px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-.onLogin form{
+.onLogin form {
   display: grid;
+  background: white;
+  width: 100%;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
 }
-.Join{
+
+/* Login이 input으로 되어있어서 같이 변함 */
+.onLogin input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.Join {
   display: flex;
+  position: relative;
+  top: 18px;
+  background: #ffffff;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-.Join form{
+.Join form {
   display: grid;
+  background: white;
+  width: 100%;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
 }
-.Back{
-  
-  position:absolute;
-  top:50%;
-  left:50%;
-  height:100px;
-  background: blanchedalmond;
-  margin:-50px 0 0 -50px;
+
+.Join input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
 }
-.joinbutton{
-  width: 173px;
-  height: 23px;
+
+.Back {
+  position: absolute;
+  background-color: #f5f6f7;
+  z-index: 5;
+  width: 450px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  height: fit-content;
+  min-height: 330px;
+  max-height: 580px;
+  top: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.joinbutton {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #03c75a;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #ffffff;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.joinbutton button:hover,
+.joinbutton button:active,
+.joinbutton button:focus {
+  background: #43a047;
+}
+
+.onLogin input[type="submit"] {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #03c75a;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+}
+.joinbutton button:hover,
+.joinbutton button:active,
+.joinbutton button:focus {
+  background: #43a047;
+}
+
+.Join input[type="submit"],
+input[type="button"] {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #03c75a;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+}
+.joinbutton button:hover,
+.joinbutton button:active,
+.joinbutton button:focus {
+  background: #43a047;
 }
