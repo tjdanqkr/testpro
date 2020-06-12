@@ -192,6 +192,7 @@ function Map() {
           <option value="음식점-일식">일식</option>
           <option value="중국음식/중국집">중국음식/중국집</option>
         </select>
+        
       </div>
 
       {/* <form onSubmit={OnSubmit} >

@@ -8,13 +8,34 @@ import Graph from "./Graph";
 const Action = (dong, fa) => {
   const [dong1, setDong1] = useState(dong.dong);
   const [graphstate, setGraphstate] = useState(false);
-
+  const [instastate, setInstastate] = useState(false);
+  const [ma, setMa] = useState("");
   const graph = () => {
     if (graphstate) {
       setGraphstate(false);
     } else {
       setGraphstate(true);
     }
+  };
+  const test = () => {
+    setInstastate(true);
+    const post = {
+      "":"",
+    };
+    fetch("/api/json2", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        charset: "utf-8",
+      },
+      body: JSON.stringify(post),
+    })
+      .then((response) => response.text())
+      .then((message) => {
+        console.log(message)
+        setMa(message);
+      });
+  
   };
   return (
     <div className="Action">
@@ -24,9 +45,12 @@ const Action = (dong, fa) => {
         <div className="icons">
           <BsBarChartFill onClick={graph}></BsBarChartFill>
           <BsClipboard></BsClipboard>
-          <FiInstagram></FiInstagram>
+          <FiInstagram onClick={test}></FiInstagram>
           <FaRegThumbsUp></FaRegThumbsUp>
           <BsGraphUp></BsGraphUp>
+          {
+            instastate?<p>{ma}</p>:<></>
+          }
         </div>
         {/* {fa.fa !== "" && dong.dong !== "" ? (
           <p></p>
