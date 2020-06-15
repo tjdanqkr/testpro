@@ -10,32 +10,44 @@ const Action = (dong, fa) => {
   const [graphstate, setGraphstate] = useState(false);
   const [instastate, setInstastate] = useState(false);
   const [ma, setMa] = useState("");
+  const isdong =() =>{
+    if(dong.dong===""){
+      alert("동을 선택해 주세요")
+      return false;
+    }
+    return true;
+  }
   const graph = () => {
-    if (graphstate) {
-      setGraphstate(false);
-    } else {
-      setGraphstate(true);
+  
+    const isf = isdong();
+    if (isf) {
+      if (graphstate) {
+        setGraphstate(false);
+      } else {
+        setGraphstate(true);
+      }
     }
   };
-  const test = () => {
-    setInstastate(true);
+  
+  const insta = () => {
     const post = {
-      "":"",
+      word: "강남역카페",
     };
-    fetch("/api/json2", {
+    fetch("/api/instar", {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        charset: "utf-8",
       },
       body: JSON.stringify(post),
     })
       .then((response) => response.text())
       .then((message) => {
-        console.log(message)
-        setMa(message);
+
+        console.log(message);
+        const json = JSON.parse(message);
+        console.log(json[[0]["cafe"]]);
       });
-  
+
   };
   return (
     <div className="Action">
@@ -45,7 +57,7 @@ const Action = (dong, fa) => {
         <div className="icons">
           <BsBarChartFill onClick={graph}></BsBarChartFill>
           <BsClipboard></BsClipboard>
-          <FiInstagram onClick={test}></FiInstagram>
+          <FiInstagram onClick={insta}></FiInstagram>
           <FaRegThumbsUp></FaRegThumbsUp>
           <BsGraphUp></BsGraphUp>
           {

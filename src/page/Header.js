@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FcHome } from "react-icons/fc";
 import { AiOutlineLogin } from "react-icons/ai";
-import { FiLogOut, } from "react-icons/fi";
+import { FiLogOut } from "react-icons/fi";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import "../css/Header.css";
@@ -11,10 +11,10 @@ import Join from "./Join";
 function Header() {
   const [loginstate, setLoginstate] = useState(false);
   const [joinstate, setJoinstate] = useState(false);
-  const [header, setHeader] =useState("Header");
-  
+  const [header, setHeader] = useState("Header");
+
   const onclick = () => {
-    if(joinstate){
+    if (joinstate) {
       setJoinstate(false);
     }
     if (loginstate) {
@@ -26,7 +26,7 @@ function Header() {
     }
   };
   const onclick2 = () => {
-    if(loginstate){
+    if (loginstate) {
       setLoginstate(false);
     }
     if (joinstate) {
@@ -47,20 +47,19 @@ function Header() {
         <Link to="/">
           <FcHome></FcHome>
         </Link>
-        
       </div>
       <div className="actionbutton">
-          {window.sessionStorage.getItem("id") === null ? (
-            <>
-              <AiOutlineLogin onClick={onclick}></AiOutlineLogin>
-              <BsFillPersonPlusFill onClick={onclick2}></BsFillPersonPlusFill>
-            </>
-          ) : (
-            <FiLogOut onClick={logout}></FiLogOut>
-          )}
-        </div>
+        {window.sessionStorage.getItem("id") === null ? (
+          <>
+            <AiOutlineLogin onClick={onclick}></AiOutlineLogin>
+            <BsFillPersonPlusFill onClick={onclick2}></BsFillPersonPlusFill>
+          </>
+        ) : (
+          <FiLogOut onClick={logout}></FiLogOut>
+        )}
+      </div>
       {loginstate ? <Login></Login> : <p></p>}
-      {joinstate? <Join></Join>:<p></p>}
+      {joinstate ? <Join></Join> : <p></p>}
     </div>
   );
 }

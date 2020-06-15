@@ -10,10 +10,27 @@
   max-height: 100%;
 }
 .list{
+  
+  top: 30%;
   z-index: 1;
-  bottom: 0%;
-  right: 3%;
+  left: 3%;
   position: absolute;
   height: 5%;
-
+  min-height: 350px;
+  max-height: fit-content;
+  display: grid;
+}
+.list button{
+  border: 1px solid skyblue;
+  background-color: rgb(255,255,255);
+  color: black;
+  padding: 5px;
+  opacity: 0.9;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin-right: -4px;
+}
+.list button:hover {
+  color: white;
+  background-color: skyblue;
 }

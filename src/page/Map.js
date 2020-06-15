@@ -132,12 +132,7 @@ function Map() {
             });
 
             customOverlay.setContent(
-              '<p>' +
-                name +
-                " " +
-                j +
-                "개입니다" +
-                "</p>"
+              "<p>" + name + " " + j + "개입니다" + "</p>"
             );
 
             customOverlay.setPosition(mouseEvent.latLng);
@@ -153,16 +148,17 @@ function Map() {
       });
     };
   }, [fa]);
+
   const namei = () => {
     console.log(dong);
   };
-  const onsel = (e) => {
+  const onsel = e => {
     setFa(e.target.value);
-    const post = {
-      classes: e.target.value,
-    };
-    const josndatamake = () => {
-      fetch("/api/upjong", {
+    const josndatamake = async () => {
+      const post = {
+        classes: e.target.value,
+      };
+      await fetch("/api/upjong", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -170,29 +166,67 @@ function Map() {
         },
         body: JSON.stringify(post),
       })
-        .then((response) => response.text())
-        .then((message) => {
+        .then(response => response.text())
+        .then(message => {
           setJsondata(JSON.parse(message));
         });
     };
     josndatamake();
   };
-  const OnSubmit = (e) => {};
+  const OnSubmit = e => {};
   return (
     <>
       <div className="map" id="map"></div>
       <Action dong={dong} fa={fanum}></Action>
       <div className="list">
-        <select onClick={onsel}>
+        <button onClick={onsel} value="커피전문점/카페/다방">
+          커피전문점/카페/다방
+        </button>
+        <button onClick={onsel} value="한식/백반/한정식">
+          한식
+        </button>
+        <button onClick={onsel} value="라면김밥분식">
+          분식
+        </button>
+        <button onClick={onsel} value="음식점-일식">
+          일식
+        </button>
+        <button onClick={onsel} value="편의점">
+          편의점
+        </button>
+        <button onClick={onsel} value="호프/맥주">
+          호프/맥주
+        </button>
+        <button onClick={onsel}>중국음식/중국집</button>
+        <button onClick={onsel}>패스트푸드</button>
+        <button onClick={onsel}>학원</button>
+        <button onClick={onsel}>안경원</button>
+
+        {/* <ul>
+          <li value="커피전문점/카페/다방">커피전문점/카페/다방</li>
+          <li value="한식/백반/한정식">한식</li>
+          <li value="라면김밥분식">분식</li>
+          <li value="음식점-일식">일식</li>
+          <li value="편의점">편의점</li>
+          <li value="호프/맥주">호프/맥주</li>
+          <li value="중국음식/중국집">중국음식/중국집</li>
+          <li value="패스트푸드">패스트푸드</li>
+          <li value="학원(종합)">학원</li>
+          <li value="안경원">안경원</li>
+        </ul> */}
+        {/* <select onClick={onsel}>
           <option></option>
           <option value="커피전문점/카페/다방">커피전문점/카페/다방</option>
-          <option value="후라이드/양념치킨">치킨집</option>
           <option value="한식/백반/한정식">한식</option>
-          <option value="족발/보쌈전문">족발</option>
+          <option value="라면김밥분식">분식</option>
           <option value="음식점-일식">일식</option>
+          <option value="편의점">편의점</option>
+          <option value="호프/맥주">호프/맥주</option>
           <option value="중국음식/중국집">중국음식/중국집</option>
-        </select>
-        
+          <option value="패스트푸드">패스트푸드</option>
+          <option value="학원(종합)">학원</option>
+          <option value="안경원">안경원</option>
+        </select> */}
       </div>
 
       {/* <form onSubmit={OnSubmit} >
