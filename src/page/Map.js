@@ -14,6 +14,17 @@ function Map() {
   const [fa, setFa] = useState("");
   const [fanum, setFanum] = useState();
   const [jsondata, setJsondata] = useState(Object);
+  const [btn1, setBtn1] = useState("btn");
+  const [btn2, setBtn2] = useState("btn");
+  const [btn3, setBtn3] = useState("btn");
+  const [btn4, setBtn4] = useState("btn");
+  const [btn5, setBtn5] = useState("btn");
+  const [btn6, setBtn6] = useState("btn");
+  const [btn7, setBtn7] = useState("btn");
+  const [btn8, setBtn8] = useState("btn");
+  const [btn9, setBtn9] = useState("btn");
+  const [btn10, setBtn10] = useState("btn");
+
   const palete = [
     "rgb(255,155,255)",
     "rgb(255,55,255)",
@@ -152,34 +163,274 @@ function Map() {
   const namei = () => {
     console.log(dong);
   };
-  const onsel = (e) => {
-    setFa(e.target.value);
-    const josndatamake = async () => {
-      const post = {
-        classes: e.target.value,
-      };
-      await fetch("/api/upjong", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          charset: "utf-8",
-        },
-        body: JSON.stringify(post),
-      })
-        .then((response) => response.text())
-        .then((message) => {
-          setJsondata(JSON.parse(message));
-        });
+
+  const josndatamake = async e => {
+    const post = {
+      classes: e.target.value,
     };
-    josndatamake();
+    await fetch("/api/upjong", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        charset: "utf-8",
+      },
+      body: JSON.stringify(post),
+    })
+      .then(response => response.text())
+      .then(message => {
+        setJsondata(JSON.parse(message));
+      });
   };
-  const OnSubmit = (e) => {};
+  const onsel1 = async e => {
+    if (btn1 === "btn") {
+      setBtn10("btn");
+      setBtn2("btn");
+      setBtn3("btn");
+      setBtn4("btn");
+      setBtn5("btn");
+      setBtn6("btn");
+      setBtn7("btn");
+      setBtn8("btn");
+      setBtn9("btn");
+      setFa(e.target.value);
+      setBtn1("onbtn");
+      await josndatamake(e);
+    } else {
+      setFa(e.target.value);
+      setBtn1("btn");
+      await josndatamake(e);
+    }
+  };
+  const onsel2 = async e => {
+    if (btn2 === "btn") {
+      setBtn1("btn");
+      setBtn10("btn");
+      setBtn3("btn");
+      setBtn4("btn");
+      setBtn5("btn");
+      setBtn6("btn");
+      setBtn7("btn");
+      setBtn8("btn");
+      setBtn9("btn");
+      setFa(e.target.value);
+      setBtn2("onbtn");
+      await josndatamake(e);
+    } else {
+      setFa(e.target.value);
+      setBtn2("btn");
+      await josndatamake(e);
+    }
+  };
+  const onsel3 = async e => {
+    if (btn3 === "btn") {
+      setBtn1("btn");
+      setBtn2("btn");
+      setBtn10("btn");
+      setBtn4("btn");
+      setBtn5("btn");
+      setBtn6("btn");
+      setBtn7("btn");
+      setBtn8("btn");
+      setBtn9("btn");
+      setFa(e.target.value);
+      setBtn3("onbtn");
+      await josndatamake(e);
+    } else {
+      setFa(e.target.value);
+      setBtn3("btn");
+      await josndatamake(e);
+    }
+  };
+  const onsel4 = async e => {
+    if (btn4 === "btn") {
+      setBtn1("btn");
+      setBtn2("btn");
+      setBtn3("btn");
+      setBtn10("btn");
+      setBtn5("btn");
+      setBtn6("btn");
+      setBtn7("btn");
+      setBtn8("btn");
+      setBtn9("btn");
+      setFa(e.target.value);
+      setBtn4("onbtn");
+      await josndatamake(e);
+    } else {
+      setFa(e.target.value);
+      setBtn4("btn");
+      await josndatamake(e);
+    }
+  };
+  const onsel5 = async e => {
+    if (btn5 === "btn") {
+      setBtn1("btn");
+      setBtn2("btn");
+      setBtn3("btn");
+      setBtn4("btn");
+      setBtn10("btn");
+      setBtn6("btn");
+      setBtn7("btn");
+      setBtn8("btn");
+      setBtn9("btn");
+      setFa(e.target.value);
+      setBtn5("onbtn");
+      await josndatamake(e);
+    } else {
+      setFa(e.target.value);
+      setBtn5("btn");
+      await josndatamake(e);
+    }
+  };
+  const onsel6 = async e => {
+    if (btn6 === "btn") {
+      setBtn1("btn");
+      setBtn2("btn");
+      setBtn3("btn");
+      setBtn4("btn");
+      setBtn5("btn");
+      setBtn10("btn");
+      setBtn7("btn");
+      setBtn8("btn");
+      setBtn9("btn");
+      setFa(e.target.value);
+      setBtn6("onbtn");
+      await josndatamake(e);
+    } else {
+      setFa(e.target.value);
+      setBtn6("btn");
+      await josndatamake(e);
+    }
+  };
+  const onsel7 = async e => {
+    if (btn7 === "btn") {
+      setBtn1("btn");
+      setBtn2("btn");
+      setBtn3("btn");
+      setBtn4("btn");
+      setBtn5("btn");
+      setBtn6("btn");
+      setBtn10("btn");
+      setBtn8("btn");
+      setBtn9("btn");
+      setFa(e.target.value);
+      setBtn7("onbtn");
+      await josndatamake(e);
+    } else {
+      setFa(e.target.value);
+      setBtn7("btn");
+      await josndatamake(e);
+    }
+  };
+  const onsel8 = async e => {
+    if (btn8 === "btn") {
+      setBtn1("btn");
+      setBtn2("btn");
+      setBtn3("btn");
+      setBtn4("btn");
+      setBtn5("btn");
+      setBtn6("btn");
+      setBtn7("btn");
+      setBtn10("btn");
+      setBtn9("btn");
+      setFa(e.target.value);
+      setBtn8("onbtn");
+      await josndatamake(e);
+    } else {
+      setFa(e.target.value);
+      setBtn8("btn");
+      await josndatamake(e);
+    }
+  };
+  const onsel9 = async e => {
+    if (setBtn9 === "btn") {
+      setBtn1("btn");
+      setBtn2("btn");
+      setBtn3("btn");
+      setBtn4("btn");
+      setBtn5("btn");
+      setBtn6("btn");
+      setBtn7("btn");
+      setBtn8("btn");
+      setBtn10("btn");
+      setFa(e.target.value);
+      setBtn9("onbtn");
+      await josndatamake(e);
+    } else {
+      setFa(e.target.value);
+      setBtn9("btn");
+      await josndatamake(e);
+    }
+  };
+  const onsel10 = async e => {
+    if (btn10 === "btn") {
+      setBtn1("btn");
+      setBtn2("btn");
+      setBtn3("btn");
+      setBtn4("btn");
+      setBtn5("btn");
+      setBtn6("btn");
+      setBtn7("btn");
+      setBtn8("btn");
+      setBtn9("btn");
+      setFa(e.target.value);
+      setBtn10("onbtn");
+      await josndatamake(e);
+    } else {
+      setFa(e.target.value);
+      setBtn10("btn");
+      await josndatamake(e);
+    }
+  };
+  const OnSubmit = e => {};
   return (
     <>
       <div className="map" id="map"></div>
       <Action dong={dong} fa={fanum}></Action>
       <div className="list">
-        <select onClick={onsel}>
+        <button className={btn1} onClick={onsel1} value="커피전문점/카페/다방">
+          커피전문점/카페/다방
+        </button>
+        <button className={btn2} onClick={onsel2} value="한식/백반/한정식">
+          한식
+        </button>
+        <button className={btn3} onClick={onsel3} value="라면김밥분식">
+          분식
+        </button>
+        <button className={btn4} onClick={onsel4} value="음식점-일식">
+          일식
+        </button>
+        <button className={btn5} onClick={onsel5} value="편의점">
+          편의점
+        </button>
+        <button className={btn6} onClick={onsel6} value="호프/맥주">
+          호프/맥주
+        </button>
+        <button className={btn7} onClick={onsel7} value="중국음식/중국집">
+          중국음식/중국집
+        </button>
+        <button className={btn8} onClick={onsel8} value="패스트푸드">
+          패스트푸드
+        </button>
+        <button className={btn9} onClick={onsel9} value="학원">
+          학원
+        </button>
+        <button className={btn10} onClick={onsel10} value="안경원">
+          안경원
+        </button>
+
+        {/* <ul>
+          <li value="커피전문점/카페/다방">커피전문점/카페/다방</li>
+          <li value="한식/백반/한정식">한식</li>
+          <li value="라면김밥분식">분식</li>
+          <li value="음식점-일식">일식</li>
+          <li value="편의점">편의점</li>
+          <li value="호프/맥주">호프/맥주</li>
+          <li value="중국음식/중국집">중국음식/중국집</li>
+          <li value="패스트푸드">패스트푸드</li>
+          <li value="학원(종합)">학원</li>
+          <li value="안경원">안경원</li>
+        </ul> */}
+        {/* <select onClick={onsel}>
           <option></option>
           <option value="커피전문점/카페/다방">커피전문점/카페/다방</option>
           <option value="한식/백반/한정식">한식</option>
@@ -191,7 +442,7 @@ function Map() {
           <option value="패스트푸드">패스트푸드</option>
           <option value="학원(종합)">학원</option>
           <option value="안경원">안경원</option>
-        </select>
+        </select> */}
       </div>
 
       {/* <form onSubmit={OnSubmit} >
