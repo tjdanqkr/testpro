@@ -4,23 +4,31 @@ import { BsBarChartFill, BsClipboard, BsGraphUp } from "react-icons/bs";
 import { FiInstagram } from "react-icons/fi";
 import { FaRegThumbsUp } from "react-icons/fa";
 import Graph from "./Graph";
+import Insta from "./Insta";
+import Biyong from "./Biyong";
 
 const Action = (dong, fa) => {
   const [dong1, setDong1] = useState(dong.dong);
   const [graphstate, setGraphstate] = useState(false);
   const [instastate, setInstastate] = useState(false);
   const [ma, setMa] = useState("");
-  const isdong =() =>{
-    if(dong.dong===""){
-      alert("동을 선택해 주세요")
+  const [biyong, setBiyong] = useState(false);
+  const isdong = () => {
+    if (dong.dong === "") {
+      alert("동을 선택해 주세요");
       return false;
     }
     return true;
-  }
+  };
   const graph = () => {
-  
     const isf = isdong();
     if (isf) {
+      if (instastate) {
+        setInstastate(false);
+      }
+      if (biyong) {
+        setBiyong(false);
+      }
       if (graphstate) {
         setGraphstate(false);
       } else {
@@ -28,26 +36,34 @@ const Action = (dong, fa) => {
       }
     }
   };
-  
-  const insta = () => {
-    const post = {
-      word: "강남역카페",
-    };
-    fetch("/api/instar", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(post),
-    })
-      .then((response) => response.text())
-      .then((message) => {
 
-        console.log(message);
-        const json = JSON.parse(message);
-        console.log(json[[0]["cafe"]]);
-      });
-
+  const instast = () => {
+    if (graphstate) {
+      setGraphstate(false);
+    }
+    if (biyong) {
+      setBiyong(false);
+    }
+    if (instastate) {
+      setInstastate(false);
+    } else {
+      setInstastate(true);
+    }
+  };
+  const biyongsta = () => {
+    if (window.sessionStorage.getItem("id") !== "") {
+      if (graphstate) {
+        setGraphstate(false);
+      }
+      if (instastate) {
+        setInstastate(false);
+      }
+      if (biyong) {
+        setBiyong(false);
+      } else {
+        setBiyong(true);
+      }
+    }
   };
   return (
     <div className="Action">
@@ -56,13 +72,10 @@ const Action = (dong, fa) => {
 
         <div className="icons">
           <BsBarChartFill onClick={graph}></BsBarChartFill>
-          <BsClipboard></BsClipboard>
-          <FiInstagram onClick={insta}></FiInstagram>
+          <BsClipboard onClick={biyongsta}></BsClipboard>
+          <FiInstagram onClick={instast}></FiInstagram>
           <FaRegThumbsUp></FaRegThumbsUp>
           <BsGraphUp></BsGraphUp>
-          {
-            instastate?<p>{ma}</p>:<></>
-          }
         </div>
         {/* {fa.fa !== "" && dong.dong !== "" ? (
           <p></p>
@@ -74,6 +87,13 @@ const Action = (dong, fa) => {
           </div>
         )} */}
       </div>
+      {instastate ? (
+        <div className="option">
+          <Insta></Insta>
+        </div>
+      ) : (
+        <></>
+      )}
       {graphstate ? (
         <div className="option">
           <Graph dong={dong.dong} fa={fa.fa}></Graph>
@@ -81,6 +101,7 @@ const Action = (dong, fa) => {
       ) : (
         <p></p>
       )}
+      {biyong ? <div className="option"></div> : <p></p>}
     </div>
   );
 };

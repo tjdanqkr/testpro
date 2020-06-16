@@ -20,7 +20,7 @@
   max-height: fit-content;
   display: grid;
 }
-.list button{
+.list .btn{
   border: 1px solid skyblue;
   background-color: rgb(255,255,255);
   color: black;
@@ -30,7 +30,12 @@
   border-bottom-left-radius: 5px;
   margin-right: -4px;
 }
-.list button:hover {
+.list .btn:hover {
+  color: white;
+  background-color: skyblue;
+}
+
+.list .onbtn {
   color: white;
   background-color: skyblue;
 }

@@ -10,8 +10,8 @@
     "axios": "^0.19.2",
     "chart.js": "^2.9.3",
     "chartjs": "^0.3.24",
-    "http-proxy-middleware": "^1.0.4",
     "gh-pages": "^3.0.0",
+    "http-proxy-middleware": "^1.0.4",
     "immer": "^6.0.9",
     "jquery": "^3.5.1",
     "react": "^16.13.1",
@@ -46,6 +46,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }, 
-  "proxy": "http://192.168.1.145:8080/"
+  },
+  "proxy": "http://localhost:8080/"
 }
