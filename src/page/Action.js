@@ -6,6 +6,7 @@ import { FaRegThumbsUp } from "react-icons/fa";
 import Graph from "./Graph";
 import Insta from "./Insta";
 import Biyong from "./Biyong";
+import Biyongop from "./Biyongop";
 
 const Action = (dong, fa) => {
   const [dong1, setDong1] = useState(dong.dong);
@@ -52,16 +53,19 @@ const Action = (dong, fa) => {
   };
   const biyongsta = () => {
     if (window.sessionStorage.getItem("id") !== "") {
-      if (graphstate) {
-        setGraphstate(false);
-      }
-      if (instastate) {
-        setInstastate(false);
-      }
-      if (biyong) {
-        setBiyong(false);
-      } else {
-        setBiyong(true);
+      const isf = isdong();
+      if (isf) {
+        if (graphstate) {
+          setGraphstate(false);
+        }
+        if (instastate) {
+          setInstastate(false);
+        }
+        if (biyong) {
+          setBiyong(false);
+        } else {
+          setBiyong(true);
+        }
       }
     }
   };
@@ -101,7 +105,13 @@ const Action = (dong, fa) => {
       ) : (
         <p></p>
       )}
-      {biyong ? <div className="option"></div> : <p></p>}
+      {biyong ? (
+        <div className="option">
+          <Biyongop dong={dong1}></Biyongop>
+        </div>
+      ) : (
+        <p></p>
+      )}
     </div>
   );
 };

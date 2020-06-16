@@ -2,22 +2,22 @@ import React, { useState } from "react";
 import { FiArrowRightCircle, FiList } from "react-icons/fi";
 import "../css/Biyong.css";
 function Biyong() {
-  const [g, setG] = useState("");
-  const [b, setB] = useState("");
-  const [d, setD] = useState("");
-  const [i, setI] = useState("");
-  const [build, setBuild] = useState("");
-  const [inte, setInte] = useState("");
-  const [sul, setSul] = useState("");
-  const [ga, setGa] = useState("");
-  const [gita, setGita] = useState("");
-  const [chong, setChong] = useState("");
-  const [year, setYear] = useState("");
-  const [month, setMonth] = useState("");
-  const [ingun, setIngun] = useState("");
-  const [zeryo, setZeryo] = useState("");
-  const [gita2, setGita2] = useState("");
-  const [danga, setDanga] = useState("");
+  const [g, setG] = useState(0);
+  const [b, setB] = useState(0);
+  const [d, setD] = useState(0);
+  const [i, setI] = useState(0);
+  const [build, setBuild] = useState(0);
+  const [inte, setInte] = useState(0);
+  const [sul, setSul] = useState(0);
+  const [ga, setGa] = useState(0);
+  const [gita, setGita] = useState(0);
+  const [chong, setChong] = useState(0);
+  const [year, setYear] = useState(0);
+  const [month, setMonth] = useState(0);
+  const [ingun, setIngun] = useState(0);
+  const [zeryo, setZeryo] = useState(0);
+  const [gita2, setGita2] = useState(0);
+  const [danga, setDanga] = useState(0);
 
   const OnSubmit = e => {
     const post = {
@@ -39,7 +39,7 @@ function Biyong() {
       gita2: gita2,
       danga: danga,
     };
-    fetch("/biyong", {
+    fetch("/api/biyong", {
       method: "POST",
       headers: {
         "content-type": "application/json",
