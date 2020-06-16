@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { produce } from "immer";
 import { Bar } from "react-chartjs-2";
+import "../css/insta.css";
+
 function insta() {
   const [words, setWords] = useState("");
   const [date1, setDate1] = useState("");
@@ -22,15 +24,15 @@ function insta() {
     ],
   });
 
-  const setword = e => {
+  const setword = (e) => {
     setWords(e.target.value);
     setLoad(false);
   };
-  const setdate1 = e => {
+  const setdate1 = (e) => {
     setDate1(e.target.value);
     setLoad(false);
   };
-  const setdate2 = e => {
+  const setdate2 = (e) => {
     setDate2(e.target.value);
     setLoad(false);
   };
@@ -72,7 +74,7 @@ function insta() {
         }
 
         setData(
-          produce(draft => {
+          produce((draft) => {
             draft.labels = tempLabels;
             draft.datasets[0]["data"] = tempDatasets;
             draft.datasets[0]["borderColor"] = tempDatasetbackcol;
@@ -116,47 +118,49 @@ function insta() {
   ];
   return (
     <div className="insta">
-      <select className="lists" onChange={setword}>
-        <option></option>
+      <div className="bar">
+        <select className="lists" onChange={setword}>
+          <option>업종선택</option>
 
-        <option value="insta카페">카페</option>
-        <option value="insta한식당">한식당</option>
-      </select>
-      <select className="lists" onChange={setdate1}>
-        <option></option>
-        <option value="2020-06-03">2020-06-03</option>
-        <option value="2020-06-04">2020-06-04</option>
-        <option value="2020-06-05">2020-06-05</option>
-        <option value="2020-06-06">2020-06-06</option>
-        <option value="2020-06-07">2020-06-07</option>
-        <option value="2020-06-08">2020-06-08</option>
-        <option value="2020-06-09">2020-06-09</option>
-        <option value="2020-06-10">2020-06-10</option>
-        <option value="2020-06-11">2020-06-11</option>
-        <option value="2020-06-12">2020-06-12</option>
-        <option value="2020-06-13">2020-06-13</option>
-        <option value="2020-06-14">2020-06-14</option>
-        <option value="2020-06-15">2020-06-15</option>
-        <option value="2020-06-16">2020-06-16</option>
-      </select>
-      <select className="lists" onChange={setdate2}>
-        <option></option>
-        <option value="2020-06-03">2020-06-03</option>
-        <option value="2020-06-04">2020-06-04</option>
-        <option value="2020-06-05">2020-06-05</option>
-        <option value="2020-06-06">2020-06-06</option>
-        <option value="2020-06-07">2020-06-07</option>
-        <option value="2020-06-08">2020-06-08</option>
-        <option value="2020-06-09">2020-06-09</option>
-        <option value="2020-06-10">2020-06-10</option>
-        <option value="2020-06-11">2020-06-11</option>
-        <option value="2020-06-12">2020-06-12</option>
-        <option value="2020-06-13">2020-06-13</option>
-        <option value="2020-06-14">2020-06-14</option>
-        <option value="2020-06-15">2020-06-15</option>
-        <option value="2020-06-16">2020-06-16</option>
-      </select>
-      <button onClick={onClick}>클릭</button>
+          <option value="insta카페">카페</option>
+          <option value="insta한식당">한식당</option>
+        </select>
+        <select className="lists" onChange={setdate1}>
+          <option>시작</option>
+          <option value="2020-06-03">2020-06-03</option>
+          <option value="2020-06-04">2020-06-04</option>
+          <option value="2020-06-05">2020-06-05</option>
+          <option value="2020-06-06">2020-06-06</option>
+          <option value="2020-06-07">2020-06-07</option>
+          <option value="2020-06-08">2020-06-08</option>
+          <option value="2020-06-09">2020-06-09</option>
+          <option value="2020-06-10">2020-06-10</option>
+          <option value="2020-06-11">2020-06-11</option>
+          <option value="2020-06-12">2020-06-12</option>
+          <option value="2020-06-13">2020-06-13</option>
+          <option value="2020-06-14">2020-06-14</option>
+          <option value="2020-06-15">2020-06-15</option>
+          <option value="2020-06-16">2020-06-16</option>
+        </select>
+        <select className="lists" onChange={setdate2}>
+          <option>끝</option>
+          <option value="2020-06-03">2020-06-03</option>
+          <option value="2020-06-04">2020-06-04</option>
+          <option value="2020-06-05">2020-06-05</option>
+          <option value="2020-06-06">2020-06-06</option>
+          <option value="2020-06-07">2020-06-07</option>
+          <option value="2020-06-08">2020-06-08</option>
+          <option value="2020-06-09">2020-06-09</option>
+          <option value="2020-06-10">2020-06-10</option>
+          <option value="2020-06-11">2020-06-11</option>
+          <option value="2020-06-12">2020-06-12</option>
+          <option value="2020-06-13">2020-06-13</option>
+          <option value="2020-06-14">2020-06-14</option>
+          <option value="2020-06-15">2020-06-15</option>
+          <option value="2020-06-16">2020-06-16</option>
+        </select>
+        <button onClick={onClick}>클릭</button>
+      </div>
       <div className="graph">
         {jsondata !== null ? (
           <Bar

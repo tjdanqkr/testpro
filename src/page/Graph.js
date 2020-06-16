@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Bar, Doughnut } from "react-chartjs-2";
 import Axios from "axios";
 import { produce } from "immer";
+
 function Graph(dong, fa) {
   const [graphop, setGraphop] = useState("");
   const [list, setList] = useState("");
@@ -25,32 +26,29 @@ function Graph(dong, fa) {
       dong: dong.dong,
     };
 
-    
-      await fetch("/api/graph", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(post),
-      })
-        .then((response) => response.json())
-        .then((message) => {
-          console.log(message);
-          setList(message);
-          listset.push(message);
-        });
-    
-    
-      if (graphop === "상권지표") {
-        jsondata.push(listset[0].sang);
-      } else if (graphop === "집객력") {
-        jsondata.push(listset[0].people);
-      } else if (graphop === "구매력") {
-        jsondata.push(listset[0].Pur);
-      } else if (graphop === "성장성") {
-        jsondata.push(listset[0].sung);
-      }
-    
+    await fetch("/api/graph", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(post),
+    })
+      .then((response) => response.json())
+      .then((message) => {
+        console.log(message);
+        setList(message);
+        listset.push(message);
+      });
+
+    if (graphop === "상권지표") {
+      jsondata.push(listset[0].sang);
+    } else if (graphop === "집객력") {
+      jsondata.push(listset[0].people);
+    } else if (graphop === "구매력") {
+      jsondata.push(listset[0].Pur);
+    } else if (graphop === "성장성") {
+      jsondata.push(listset[0].sung);
+    }
 
     const tempLabels = [];
     const tempDatasets = [];
