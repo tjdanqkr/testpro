@@ -7,6 +7,7 @@ import Graph from "./Graph";
 import Insta from "./Insta";
 import Biyong from "./Biyong";
 import Biyongop from "./Biyongop";
+import Axios from "axios";
 
 const Action = (dong, fa) => {
   const [dong1, setDong1] = useState(dong.dong);
@@ -14,6 +15,9 @@ const Action = (dong, fa) => {
   const [instastate, setInstastate] = useState(false);
   const [ma, setMa] = useState("");
   const [biyong, setBiyong] = useState(false);
+  const [json, setJson] = useState();
+  let isq = false;
+
   const isdong = () => {
     if (dong.dong === "") {
       alert("동을 선택해 주세요");
@@ -51,7 +55,8 @@ const Action = (dong, fa) => {
       setInstastate(true);
     }
   };
-  const biyongsta = () => {
+
+  const biyongsta = async () => {
     if (window.sessionStorage.getItem("id") !== "") {
       const isf = isdong();
       if (isf) {
@@ -64,11 +69,12 @@ const Action = (dong, fa) => {
         if (biyong) {
           setBiyong(false);
         } else {
-          setBiyong(true);
+          await setBiyong(true);
         }
       }
     }
   };
+
   return (
     <div className="Action">
       <div className="sel">
@@ -107,7 +113,7 @@ const Action = (dong, fa) => {
       )}
       {biyong ? (
         <div className="option">
-          <Biyongop dong={dong1}></Biyongop>
+          <Biyongop dong={dong.dong} json={json}></Biyongop>
         </div>
       ) : (
         <p></p>

@@ -168,18 +168,22 @@ function Map() {
     const post = {
       classes: e.target.value,
     };
-    await fetch("/api/upjong", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        charset: "utf-8",
-      },
-      body: JSON.stringify(post),
-    })
-      .then(response => response.text())
-      .then(message => {
-        setJsondata(JSON.parse(message));
-      });
+    try {
+      await fetch("/api/upjong", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          charset: "utf-8",
+        },
+        body: JSON.stringify(post),
+      })
+        .then(response => response.text())
+        .then(message => {
+          setJsondata(JSON.parse(message));
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
   const onsel1 = async e => {
     if (btn1 === "btn") {

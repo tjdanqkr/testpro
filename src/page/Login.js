@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import "../css/Login.css";
 import { FiUserPlus, FiMap, FiUserMinus } from "react-icons/fi";
 
-const Login = (Loginstate) => {
+const Login = Loginstate => {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
   const [onLogin, setOnLogin] = useState("login");
 
-  const OnSubmit = (e) => {
+  const OnSubmit = e => {
     const post = {
       id: id,
       pw: pw,
@@ -21,14 +21,14 @@ const Login = (Loginstate) => {
       },
       body: JSON.stringify(post),
     })
-      .then((response) => response.text())
-      .then((message) => {
+      .then(response => response.text())
+      .then(message => {
         console.log(message);
         if (message === "re") {
           alert("다시 시도");
         } else {
           window.sessionStorage.setItem("id", id);
-          console.log("sus");
+
           window.location.replace("/");
         }
       });
@@ -41,14 +41,14 @@ const Login = (Loginstate) => {
           <input
             type="text"
             name="id"
-            onChange={(e) => setId(e.target.value)}
+            onChange={e => setId(e.target.value)}
             placeholder="id"
           />
 
           <input
             type="password"
             name="pw"
-            onChange={(e) => setPw(e.target.value)}
+            onChange={e => setPw(e.target.value)}
             placeholder="password"
           />
 

@@ -33,23 +33,28 @@ function Biyong() {
       gita: gita,
       chong: chong,
       year: year,
-      month: month,
+      menth: month,
       ingun: ingun,
       zeryo: zeryo,
       gita2: gita2,
       danga: danga,
     };
-    fetch("/api/biyong", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(post),
-    })
-      .then(response => response.text())
-      .then(message => {
-        console.log(message);
-      });
+    try {
+      fetch("/api/biyong", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(post),
+      })
+        .then(response => response.text())
+        .then(message => {
+          console.log(message);
+          window.location.replace("/");
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <>
@@ -86,7 +91,7 @@ function Biyong() {
                   onChange={e => setB(e.target.value)}
                 ></input>
               </th>
-              <th className="text">대출금/이자(연간)</th>
+              <th className="text">대출금/이자(월간)</th>
               <th colSpan="2" className="inputt">
                 <input
                   type="text"

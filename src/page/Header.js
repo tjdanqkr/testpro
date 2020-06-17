@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FcHome } from "react-icons/fc";
 import { AiOutlineLogin, AiOutlineAudit } from "react-icons/ai";
 import { FiLogOut } from "react-icons/fi";
+import { FcCancel } from "react-icons/fc";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import "../css/Header.css";
@@ -85,7 +86,14 @@ function Header() {
       </div>
       {loginstate ? <Login></Login> : <p></p>}
       {joinstate ? <Join></Join> : <p></p>}
-      {biyongst ? <Biyong></Biyong> : <p></p>}
+      {biyongst ? (
+        <>
+          <FcCancel onClick={onclick3}></FcCancel>
+          <Biyong></Biyong>
+        </>
+      ) : (
+        <p></p>
+      )}
     </div>
   );
 }
