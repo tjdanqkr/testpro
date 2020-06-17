@@ -24,15 +24,14 @@ function Join() {
       },
       body: JSON.stringify(post),
     })
-      .then((response) => response.text())
-      .then((message) => {
+      .then(response => response.text())
+      .then(message => {
         console.log(message);
         setCheckMessage(message);
         setIdcheck(true);
       });
   };
-  const OnSubmit = (e) => {
-    //e.preventdefault();
+  const anSubmit = e => {
     if (pw === repw) {
       const post = {
         id: id,
@@ -47,8 +46,8 @@ function Join() {
         },
         body: JSON.stringify(post),
       })
-        .then((response) => response.text())
-        .then((message) => {
+        .then(response => response.text())
+        .then(message => {
           console.log(message);
         });
       alert("가입완료");
@@ -61,11 +60,11 @@ function Join() {
   return (
     <div className="Back">
       <div className="Join">
-        <form onSubmit={OnSubmit}>
+        <div className="form">
           <input
             type="text"
             name="Id"
-            onChange={(e) => setId(e.target.value)}
+            onChange={e => setId(e.target.value)}
             placeholder="id"
           />
           <input type="button" onClick={idch} value="아이디 중복 검사" />
@@ -73,30 +72,30 @@ function Join() {
           <input
             type="password"
             name="Pw"
-            onChange={(e) => setPw(e.target.value)}
+            onChange={e => setPw(e.target.value)}
             placeholder="password"
           />
           <input
             type="password"
             name="rePw"
-            onChange={(e) => setRepw(e.target.value)}
+            onChange={e => setRepw(e.target.value)}
             placeholder="REpassword"
           />
           <input
             type="text"
             name="name"
-            onChange={(e) => setName(e.target.value)}
+            onChange={e => setName(e.target.value)}
             placeholder="name"
           />
           <input
             type="text"
             name="age"
-            onChange={(e) => setAge(e.target.value)}
+            onChange={e => setAge(e.target.value)}
             placeholder="age"
           />
 
-          <input type="submit" value="Join" />
-        </form>
+          <input type="button" value="Join" onClick={anSubmit} />
+        </div>
       </div>
     </div>
   );

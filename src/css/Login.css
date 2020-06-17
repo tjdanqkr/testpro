@@ -9,7 +9,7 @@
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-.onLogin form {
+.onLogin .form {
   display: grid;
   background: white;
   width: 100%;
@@ -43,7 +43,8 @@
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-.Join form {
+
+.Join .form {
   display: grid;
   background: white;
   width: 100%;
@@ -103,7 +104,7 @@
   background: #43a047;
 }
 
-.onLogin input[type="submit"] {
+.onLogin button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
@@ -121,8 +122,7 @@
   background: #43a047;
 }
 
-.Join input[type="submit"],
-input[type="button"] {
+.Join input[type="button"]{
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;

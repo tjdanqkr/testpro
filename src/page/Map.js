@@ -91,7 +91,7 @@ function Map() {
             path.push(new kakao.maps.LatLng(coordinate[1], coordinate[0])); //new daum.maps.LatLng가 없으면 인식을 못해서 path 배열에 추가
           });
 
-          if (fa === "") {
+          if (jsondata === {}) {
           } else {
             let i = 0;
             for (i = 0; i < jsondata.length; i++) {
@@ -101,21 +101,21 @@ function Map() {
             }
           }
 
-          let fillColor = "#fff";
+          let fillColor = "rgb(220,220,220)";
           if (j >= 0 && j < 20) {
-            fillColor = palete[2];
+            fillColor = "	rgb(220,220,220)";
           }
           if (j >= 20 && j < 50) {
-            fillColor = palete[1];
+            fillColor = "rgb(192,192,192)";
           }
           if (j >= 50 && j < 70) {
-            fillColor = palete[0];
+            fillColor = "rgb(128,128,128)";
           }
           if (j >= 70 && j < 100) {
-            fillColor = palete[3];
+            fillColor = "rgb(105,105,105)";
           }
           if (j >= 100) {
-            fillColor = palete[4];
+            fillColor = "rgb(0,0,0)";
           }
 
           // 다각형을 생성합니다
@@ -123,7 +123,7 @@ function Map() {
             map: map, // 다각형을 표시할 지도 객체
             path: path,
             strokeWeight: 2,
-            strokeColor: "#004c80",
+            strokeColor: "rgb(255,255,255)",
             strokeOpacity: 0.8,
             fillColor: fillColor,
             fillOpacity: 0.7,
@@ -158,15 +158,20 @@ function Map() {
         }
       });
     };
+  }, [jsondata]);
+  useEffect(() => {
+    console.log(fa);
+    if (jsondata === undefined) {
+      josndatamake();
+    }
   }, [fa]);
-
   const namei = () => {
     console.log(dong);
   };
 
   const josndatamake = async e => {
     const post = {
-      classes: e.target.value,
+      classes: e,
     };
     try {
       await fetch("/api/upjong", {
@@ -178,8 +183,8 @@ function Map() {
         body: JSON.stringify(post),
       })
         .then(response => response.text())
-        .then(message => {
-          setJsondata(JSON.parse(message));
+        .then(async function (message) {
+          await setJsondata(JSON.parse(message));
         });
     } catch (error) {
       console.log(error);
@@ -196,13 +201,16 @@ function Map() {
       setBtn7("btn");
       setBtn8("btn");
       setBtn9("btn");
-      setFa(e.target.value);
+
       setBtn1("onbtn");
-      await josndatamake(e);
+      let fa1 = e.target.value;
+      await josndatamake(fa1);
+
+      await setFa(fa1);
     } else {
-      setFa(e.target.value);
       setBtn1("btn");
-      await josndatamake(e);
+
+      await setFa("");
     }
   };
   const onsel2 = async e => {
@@ -216,13 +224,14 @@ function Map() {
       setBtn7("btn");
       setBtn8("btn");
       setBtn9("btn");
-      setFa(e.target.value);
+
       setBtn2("onbtn");
-      await josndatamake(e);
+      let fa1 = e.target.value;
+      await josndatamake(fa1);
+      console.log(fa1);
+      await setFa(fa1);
     } else {
-      setFa(e.target.value);
       setBtn2("btn");
-      await josndatamake(e);
     }
   };
   const onsel3 = async e => {
@@ -236,13 +245,14 @@ function Map() {
       setBtn7("btn");
       setBtn8("btn");
       setBtn9("btn");
-      setFa(e.target.value);
+
       setBtn3("onbtn");
-      await josndatamake(e);
+      let fa1 = e.target.value;
+      await josndatamake(fa1);
+      console.log(fa1);
+      await setFa(fa1);
     } else {
-      setFa(e.target.value);
       setBtn3("btn");
-      await josndatamake(e);
     }
   };
   const onsel4 = async e => {
@@ -256,13 +266,14 @@ function Map() {
       setBtn7("btn");
       setBtn8("btn");
       setBtn9("btn");
-      setFa(e.target.value);
+
       setBtn4("onbtn");
-      await josndatamake(e);
+      let fa1 = e.target.value;
+      await josndatamake(fa1);
+      console.log(fa1);
+      await setFa(fa1);
     } else {
-      setFa(e.target.value);
       setBtn4("btn");
-      await josndatamake(e);
     }
   };
   const onsel5 = async e => {
@@ -276,13 +287,14 @@ function Map() {
       setBtn7("btn");
       setBtn8("btn");
       setBtn9("btn");
-      setFa(e.target.value);
+
       setBtn5("onbtn");
-      await josndatamake(e);
+      let fa1 = e.target.value;
+      await josndatamake(fa1);
+      console.log(fa1);
+      await setFa(fa1);
     } else {
-      setFa(e.target.value);
       setBtn5("btn");
-      await josndatamake(e);
     }
   };
   const onsel6 = async e => {
@@ -296,13 +308,14 @@ function Map() {
       setBtn7("btn");
       setBtn8("btn");
       setBtn9("btn");
-      setFa(e.target.value);
+
       setBtn6("onbtn");
-      await josndatamake(e);
+      let fa1 = e.target.value;
+      await josndatamake(fa1);
+      console.log(fa1);
+      await setFa(fa1);
     } else {
-      setFa(e.target.value);
       setBtn6("btn");
-      await josndatamake(e);
     }
   };
   const onsel7 = async e => {
@@ -316,13 +329,14 @@ function Map() {
       setBtn10("btn");
       setBtn8("btn");
       setBtn9("btn");
-      setFa(e.target.value);
+
       setBtn7("onbtn");
-      await josndatamake(e);
+      let fa1 = e.target.value;
+      await josndatamake(fa1);
+      console.log(fa1);
+      await setFa(fa1);
     } else {
-      setFa(e.target.value);
       setBtn7("btn");
-      await josndatamake(e);
     }
   };
   const onsel8 = async e => {
@@ -336,13 +350,14 @@ function Map() {
       setBtn7("btn");
       setBtn10("btn");
       setBtn9("btn");
-      setFa(e.target.value);
+
       setBtn8("onbtn");
-      await josndatamake(e);
+      let fa1 = e.target.value;
+      await josndatamake(fa1);
+      console.log(fa1);
+      await setFa(fa1);
     } else {
-      setFa(e.target.value);
       setBtn8("btn");
-      await josndatamake(e);
     }
   };
   const onsel9 = async e => {
@@ -356,13 +371,14 @@ function Map() {
       setBtn7("btn");
       setBtn8("btn");
       setBtn10("btn");
-      setFa(e.target.value);
+
       setBtn9("onbtn");
-      await josndatamake(e);
+      let fa1 = e.target.value;
+      await josndatamake(fa1);
+      console.log(fa1);
+      await setFa(fa1);
     } else {
-      setFa(e.target.value);
       setBtn9("btn");
-      await josndatamake(e);
     }
   };
   const onsel10 = async e => {
@@ -376,13 +392,14 @@ function Map() {
       setBtn7("btn");
       setBtn8("btn");
       setBtn9("btn");
-      setFa(e.target.value);
+
       setBtn10("onbtn");
-      await josndatamake(e);
+      let fa1 = e.target.value;
+      await josndatamake(fa1);
+      console.log(fa1);
+      await setFa(fa1);
     } else {
-      setFa(e.target.value);
       setBtn10("btn");
-      await josndatamake(e);
     }
   };
   const OnSubmit = e => {};

@@ -5,12 +5,13 @@ import { produce } from "immer";
 import { Bar } from "react-chartjs-2";
 import "../css/insta.css";
 
-function insta() {
+function insta(json1) {
   const [words, setWords] = useState("");
   const [date1, setDate1] = useState("");
   const [date2, setDate2] = useState("");
   const [jsondata, setJsondata] = useState();
   const [load, setLoad] = useState(false);
+  const [json, setJson] = useState();
   const [data, setData] = useState({
     labels: [],
     datasets: [
@@ -24,69 +25,75 @@ function insta() {
     ],
   });
 
-  const setword = (e) => {
+  const setword = e => {
     setWords(e.target.value);
     setLoad(false);
   };
-  const setdate1 = (e) => {
+  const setdate1 = e => {
     setDate1(e.target.value);
     setLoad(false);
   };
-  const setdate2 = (e) => {
+  const setdate2 = e => {
     setDate2(e.target.value);
     setLoad(false);
   };
-  async function statera() {
+  const setjson = async () => {
     if (words && date1 && date2 !== "") {
-      setJsondata();
       const post = {
         word: words,
         date1: date1,
         date2: date2,
       };
       try {
-        Axios.post("/api/instar", post).then(function (response) {
-          setJsondata(response.data);
+        await Axios.post("/api/instar", post).then(async function (response) {
+          await setJsondata(response.data);
 
           console.log(response.data);
-          return response.data;
         });
       } catch (error) {
         console.log(error);
       }
+    }
+  };
 
-      try {
-        const tempLabels = [];
-        const tempDatasets = [];
-        const tempDatasetbackcol = [];
+  const makedata = () => {
+    try {
+      const tempLabels = [];
+      const tempDatasets = [];
+      const tempDatasetbackcol = [];
 
-        if (jsondata.length !== 0) {
-          if (jsondata.status !== 500) {
-            for (let i = 0; i < jsondata.length; i++) {
-              tempLabels.push(jsondata[i].tag);
-              tempDatasets.push(jsondata[i].count);
-              console.log(jsondata[i].tag);
-            }
-            for (let i = 0; i < tempDatasets.length; i++) {
-              tempDatasetbackcol.push(palete[i]);
-            }
+      if (jsondata.length !== 0) {
+        if (jsondata.status !== 500) {
+          for (let i = 0; i < jsondata.length; i++) {
+            tempLabels.push(jsondata[i].tag);
+            tempDatasets.push(jsondata[i].count);
+            console.log(jsondata[i].tag);
+          }
+          for (let i = 0; i < tempDatasets.length; i++) {
+            tempDatasetbackcol.push(palete[0]);
           }
         }
-
-        setData(
-          produce((draft) => {
-            draft.labels = tempLabels;
-            draft.datasets[0]["data"] = tempDatasets;
-            draft.datasets[0]["borderColor"] = tempDatasetbackcol;
-            draft.datasets[0]["backgroundColor"] = tempDatasetbackcol;
-            return draft;
-          })
-        );
-      } catch (error) {
-        console.log(error);
       }
+
+      setData(
+        produce(draft => {
+          draft.labels = tempLabels;
+          draft.datasets[0]["data"] = tempDatasets;
+          draft.datasets[0]["borderColor"] = tempDatasetbackcol;
+          draft.datasets[0]["backgroundColor"] = tempDatasetbackcol;
+          return draft;
+        })
+      );
+    } catch (error) {
+      console.log(error);
     }
-  }
+  };
+
+  const date = async () => {
+    Axios.get("/api/instar2").then(async function (res) {
+      await setJson(res.data);
+    });
+  };
   // useEffect(() => {
   //   statera();
   //   console.log(load);
@@ -95,12 +102,20 @@ function insta() {
   const onClick = () => {
     setLoad(true);
   };
+
   useEffect(() => {
-    statera();
-    console.log(load);
-    console.log(data);
-  }, [load]);
+    if (words && date1 && date2 !== "") {
+      setjson();
+    }
+  }, [words, date1, date2]);
+  useEffect(() => {
+    if (jsondata !== undefined) {
+      makedata();
+    }
+  }, [jsondata]);
+
   const palete = [
+    "rgb(55, 155, 255)",
     "rgb(255,155,255)",
     "rgb(255,55,255)",
     "rgb(55,155,255)",
@@ -122,47 +137,55 @@ function insta() {
         <select className="lists" onChange={setword}>
           <option>업종선택</option>
 
-          <option value="insta카페">카페</option>
-          <option value="insta한식당">한식당</option>
+          <option value="insta강남구맛집">강남구맛집</option>
+          <option value="insta강남구카페">강남구카페</option>
+          <option value="insta관악구맛집">관악구맛집</option>
+          <option value="insta관악구카페">관악구카페</option>
+          <option value="insta광진구맛집">광진구맛집</option>
+          <option value="insta광진구카페">광진구카페</option>
+          <option value="insta동대문구맛집">동대문구맛집</option>
+          <option value="insta동대문구카페">동대문구카페</option>
+          <option value="insta서초구맛집">서초구맛집</option>
+          <option value="insta서초구카페">서초구카페</option>
+          <option value="insta성동구맛집">성동구맛집</option>
+          <option value="insta성동구카페">성동구카페</option>
+          <option value="insta성북구맛집">성북구맛집</option>
+          <option value="insta성북구카페">강남구카페</option>
+          <option value="insta송파구맛집">송파구맛집</option>
+          <option value="insta송파구카페">송파구카페</option>
+          <option value="insta용산구맛집">용산구맛집</option>
+          <option value="insta용산구카페">용산구카페</option>
+          <option value="insta중구맛집">중구맛집</option>
+          <option value="insta중구카페">중구카페</option>
         </select>
         <select className="lists" onChange={setdate1}>
           <option>시작</option>
-          <option value="2020-06-03">2020-06-03</option>
-          <option value="2020-06-04">2020-06-04</option>
-          <option value="2020-06-05">2020-06-05</option>
-          <option value="2020-06-06">2020-06-06</option>
-          <option value="2020-06-07">2020-06-07</option>
-          <option value="2020-06-08">2020-06-08</option>
-          <option value="2020-06-09">2020-06-09</option>
-          <option value="2020-06-10">2020-06-10</option>
-          <option value="2020-06-11">2020-06-11</option>
-          <option value="2020-06-12">2020-06-12</option>
-          <option value="2020-06-13">2020-06-13</option>
-          <option value="2020-06-14">2020-06-14</option>
-          <option value="2020-06-15">2020-06-15</option>
-          <option value="2020-06-16">2020-06-16</option>
+          {json1.json1.length !== 0 ? (
+            json1.json1.map(index => (
+              <option key={index} value={index}>
+                {index}
+              </option>
+            ))
+          ) : (
+            <></>
+          )}
         </select>
         <select className="lists" onChange={setdate2}>
           <option>끝</option>
-          <option value="2020-06-03">2020-06-03</option>
-          <option value="2020-06-04">2020-06-04</option>
-          <option value="2020-06-05">2020-06-05</option>
-          <option value="2020-06-06">2020-06-06</option>
-          <option value="2020-06-07">2020-06-07</option>
-          <option value="2020-06-08">2020-06-08</option>
-          <option value="2020-06-09">2020-06-09</option>
-          <option value="2020-06-10">2020-06-10</option>
-          <option value="2020-06-11">2020-06-11</option>
-          <option value="2020-06-12">2020-06-12</option>
-          <option value="2020-06-13">2020-06-13</option>
-          <option value="2020-06-14">2020-06-14</option>
-          <option value="2020-06-15">2020-06-15</option>
-          <option value="2020-06-16">2020-06-16</option>
+          {json1.json1.length !== 0 ? (
+            json1.json1.map(index => (
+              <option key={index} value={index}>
+                {index}
+              </option>
+            ))
+          ) : (
+            <></>
+          )}
         </select>
-        <button onClick={onClick}>클릭</button>
+        {/* <button onClick={onClick}>클릭</button> */}
       </div>
       <div className="graph">
-        {jsondata !== null ? (
+        {jsondata !== undefined ? (
           <Bar
             width={300}
             height={300}

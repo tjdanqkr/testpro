@@ -1,7 +1,7 @@
 .Action {
   position: absolute;
   top: 15%;
-  width: 500px;
+  width: 700px;
   opacity: 0.9;
   z-index: 1;
   background-color: darkred;
@@ -10,17 +10,17 @@
 }
 .sel {
   position: initial;
-  background-color: lightgray;
+  background-color: white;
   opacity: 1;
-  width: 95%;
-  margin: 11px;
+  width: 97%;
+  margin: 10px;
   display: block;
 }
 .option {
-  background-color: azure;
+  background-color: white;
   opacity: 1;
-  width: 95%;
-  margin: 11px;
+  width: 97%;
+  margin: 10px;
   height: inherit;
 }
 .icons {
@@ -31,4 +31,15 @@
   width: 30px;
   height: 30px;
   padding: 5px;
+}
+
+.lists {
+  border: 2px solid skyblue;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  padding: 6px 12px;
+  opacity: 0.9;
+  border-radius: 5px;
+  margin: 8px;
+  height: 50px;
 }

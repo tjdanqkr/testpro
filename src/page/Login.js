@@ -28,7 +28,6 @@ const Login = Loginstate => {
           alert("다시 시도");
         } else {
           window.sessionStorage.setItem("id", id);
-
           window.location.replace("/");
         }
       });
@@ -37,7 +36,7 @@ const Login = Loginstate => {
   return (
     <div className="Back">
       <div className="onLogin">
-        <form onSubmit={OnSubmit} method="post">
+        <div className="form">
           <input
             type="text"
             name="id"
@@ -52,11 +51,8 @@ const Login = Loginstate => {
             placeholder="password"
           />
 
-          <input type="submit" value="Login" />
-          <Link to="/join">
-            <button className="joinbutton">join</button>
-          </Link>
-        </form>
+          <button onClick={OnSubmit}>Login</button>
+        </div>
       </div>
     </div>
   );

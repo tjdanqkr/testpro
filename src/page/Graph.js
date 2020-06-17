@@ -62,7 +62,7 @@ function Graph(dong, fa) {
               tempDatasets.push(jsondata[0][i].totalscore);
             }
             for (let i = 0; i < tempDatasets.length; i++) {
-              tempDatasetbackcol.push(palete[i]);
+              tempDatasetbackcol.push(palete[0]);
             }
           }
         } catch (error) {
@@ -84,6 +84,7 @@ function Graph(dong, fa) {
     }
   }
   const palete = [
+    "rgb(55, 155, 255)",
     "rgb(255,155,255)",
     "rgb(255,55,255)",
     "rgb(55,155,255)",
@@ -108,7 +109,7 @@ function Graph(dong, fa) {
   return (
     <>
       <div className="graphlist">
-        <select onClick={graphlistop}>
+        <select onClick={graphlistop} className="lists">
           <option value=""></option>
           <option value="상권지표">상권지표</option>
           <option value="집객력">집객력</option>
