@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { FcHome } from "react-icons/fc";
-import { AiOutlineLogin, AiOutlineAudit } from "react-icons/ai";
+import { GrHome } from "react-icons/gr";
+import {
+  AiFillHome,
+  AiOutlineLogin,
+  AiOutlineAudit,
+  AiOutlineHome,
+} from "react-icons/ai";
 import { FiLogOut } from "react-icons/fi";
+import { FcCancel } from "react-icons/fc";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import "../css/Header.css";
@@ -60,14 +66,14 @@ function Header() {
     }
   };
   const logout = () => {
-    window.sessionStorage.setItem("id", null);
+    window.sessionStorage.removeItem("id");
     window.location.replace("/");
   };
   return (
     <div className={header}>
       <div className="homebutton">
         <Link to="/">
-          <FcHome></FcHome>
+          <GrHome></GrHome>
         </Link>
       </div>
       <div className="actionbutton">
@@ -85,7 +91,14 @@ function Header() {
       </div>
       {loginstate ? <Login></Login> : <p></p>}
       {joinstate ? <Join></Join> : <p></p>}
-      {biyongst ? <Biyong></Biyong> : <p></p>}
+      {biyongst ? (
+        <>
+          <FcCancel onClick={onclick3}></FcCancel>
+          <Biyong></Biyong>
+        </>
+      ) : (
+        <p></p>
+      )}
     </div>
   );
 }

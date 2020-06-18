@@ -6,13 +6,24 @@ import { FaRegThumbsUp } from "react-icons/fa";
 import Graph from "./Graph";
 import Insta from "./Insta";
 import Biyong from "./Biyong";
+import Biyongop from "./Biyongop";
+import Axios from "axios";
+import Chuihyung from "./Chuihyung";
+import Gilcuchun from "./Gilcuchun";
 
 const Action = (dong, fa) => {
   const [dong1, setDong1] = useState(dong.dong);
   const [graphstate, setGraphstate] = useState(false);
   const [instastate, setInstastate] = useState(false);
+  const [chui, setChui] = useState(false);
   const [ma, setMa] = useState("");
   const [biyong, setBiyong] = useState(false);
+  const [json, setJson] = useState();
+  const [chuidata, setChuidata] = useState();
+  const [gilst, setGilst] = useState(false);
+  const [gildata, setGildata] = useState();
+  let isq = false;
+
   const isdong = () => {
     if (dong.dong === "") {
       alert("동을 선택해 주세요");
@@ -23,11 +34,17 @@ const Action = (dong, fa) => {
   const graph = () => {
     const isf = isdong();
     if (isf) {
+      if (chui) {
+        setChui(false);
+      }
       if (instastate) {
         setInstastate(false);
       }
       if (biyong) {
         setBiyong(false);
+      }
+      if (gilst) {
+        setGilst(false);
       }
       if (graphstate) {
         setGraphstate(false);
@@ -36,22 +53,105 @@ const Action = (dong, fa) => {
       }
     }
   };
+  const chuist = async () => {
+    const isf = isdong();
+    if (isf) {
+      if (instastate) {
+        setInstastate(false);
+      }
+      if (biyong) {
+        setBiyong(false);
+      }
+      if (graphstate) {
+        setGraphstate(false);
+      }
+      if (gilst) {
+        setGilst(false);
+      }
+      if (chui) {
+        setChui(false);
+      } else {
+        if (chuidata === undefined) {
+          const makejson = async () => {
+            const post = {
+              dong: dong.dong,
+            };
+            await Axios.post("/api/chui", post).then(async function (res) {
+              await setChuidata(res.data);
+              await console.log(res.data);
+            });
+          };
+          await makejson();
+        } else {
+          console.log(json);
+          await setChui(true);
+        }
+      }
+    }
+  };
 
-  const instast = () => {
+  const instast = async () => {
     if (graphstate) {
       setGraphstate(false);
+    }
+    if (chui) {
+      setChui(false);
     }
     if (biyong) {
       setBiyong(false);
     }
+    if (gilst) {
+      setGilst(false);
+    }
     if (instastate) {
       setInstastate(false);
     } else {
-      setInstastate(true);
+      if (json !== undefined) {
+        console.log(json);
+        setInstastate(true);
+      } else {
+        await Axios.get("/api/instar2").then(async function (res) {
+          await setJson(res.data);
+          await console.log(res.data.length);
+          await console.log(json);
+        });
+      }
     }
   };
-  const biyongsta = () => {
-    if (window.sessionStorage.getItem("id") !== "") {
+
+  const biyongsta = async () => {
+    if (window.sessionStorage.getItem("id") !== null) {
+      const isf = isdong();
+      if (isf) {
+        if (chui) {
+          setChui(false);
+        }
+        if (graphstate) {
+          setGraphstate(false);
+        }
+        if (instastate) {
+          setInstastate(false);
+        }
+        if (gilst) {
+          setGilst(false);
+        }
+        if (biyong) {
+          setBiyong(false);
+        } else {
+          await setBiyong(true);
+        }
+      }
+    } else {
+      alert("로그인 해주세요");
+    }
+  };
+
+  const dabongsta = async () => {
+    const isf = isdong();
+    if (isf) {
+      if (chui) {
+        setChui(false);
+      }
       if (graphstate) {
         setGraphstate(false);
       }
@@ -60,11 +160,52 @@ const Action = (dong, fa) => {
       }
       if (biyong) {
         setBiyong(false);
+      }
+      if (gilst) {
+        setGilst(false);
       } else {
-        setBiyong(true);
+        if (gildata === undefined) {
+          const makelist = async () => {
+            const post = {
+              dong: dong.dong,
+            };
+            try {
+              await Axios.post("/api/gil", post).then(async function (res) {
+                await setGildata(res.data);
+              });
+            } catch (error) {
+              console.log(error);
+            }
+          };
+          await makelist();
+        } else {
+          console.log(gildata);
+          await setGilst(true);
+        }
       }
     }
   };
+  useEffect(() => {
+    if (json !== undefined) {
+      instast();
+    }
+  }, [json]);
+  useEffect(() => {
+    if (chuidata !== undefined) {
+      instast();
+    }
+  }, [chuidata]);
+  useEffect(() => {
+    if (gildata !== undefined && !gilst) {
+      dabongsta();
+    }
+    if (gilst && gildata !== undefined) {
+      setGildata();
+      setGilst(false);
+    }
+
+    console.log(gilst);
+  }, [gildata, dong.dong]);
   return (
     <div className="Action">
       <div className="sel">
@@ -74,8 +215,8 @@ const Action = (dong, fa) => {
           <BsBarChartFill onClick={graph}></BsBarChartFill>
           <BsClipboard onClick={biyongsta}></BsClipboard>
           <FiInstagram onClick={instast}></FiInstagram>
-          <FaRegThumbsUp></FaRegThumbsUp>
-          <BsGraphUp></BsGraphUp>
+          <FaRegThumbsUp onClick={dabongsta}></FaRegThumbsUp>
+          <BsGraphUp onClick={chuist}></BsGraphUp>
         </div>
         {/* {fa.fa !== "" && dong.dong !== "" ? (
           <p></p>
@@ -89,7 +230,7 @@ const Action = (dong, fa) => {
       </div>
       {instastate ? (
         <div className="option">
-          <Insta></Insta>
+          <Insta json1={json}></Insta>
         </div>
       ) : (
         <></>
@@ -101,7 +242,27 @@ const Action = (dong, fa) => {
       ) : (
         <p></p>
       )}
-      {biyong ? <div className="option"></div> : <p></p>}
+      {biyong ? (
+        <div className="option">
+          <Biyongop dong={dong.dong}></Biyongop>
+        </div>
+      ) : (
+        <p></p>
+      )}
+      {chui ? (
+        <div className="option">
+          <Chuihyung dong={dong.dong} json={json}></Chuihyung>
+        </div>
+      ) : (
+        <p></p>
+      )}
+      {gilst ? (
+        <div className="option">
+          <Gilcuchun dong={dong.dong} json={gildata}></Gilcuchun>
+        </div>
+      ) : (
+        <p></p>
+      )}
     </div>
   );
 };

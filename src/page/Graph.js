@@ -25,62 +25,66 @@ function Graph(dong, fa) {
     const post = {
       dong: dong.dong,
     };
+    try {
+      await fetch("/api/graph", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(post),
+      })
+        .then(response => response.json())
+        .then(message => {
+          console.log(message);
+          setList(message);
+          listset.push(message);
+        });
 
-    await fetch("/api/graph", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(post),
-    })
-      .then((response) => response.json())
-      .then((message) => {
-        console.log(message);
-        setList(message);
-        listset.push(message);
-      });
-
-    if (graphop === "상권지표") {
-      jsondata.push(listset[0].sang);
-    } else if (graphop === "집객력") {
-      jsondata.push(listset[0].people);
-    } else if (graphop === "구매력") {
-      jsondata.push(listset[0].Pur);
-    } else if (graphop === "성장성") {
-      jsondata.push(listset[0].sung);
-    }
-
-    const tempLabels = [];
-    const tempDatasets = [];
-    const tempDatasetbackcol = [];
-
-    if (jsondata.length !== 0) {
-      try {
-        if (jsondata.status !== 500) {
-          for (let i = 0; i < jsondata[0].length; i++) {
-            tempLabels.push(jsondata[0][i].gil);
-            tempDatasets.push(jsondata[0][i].totalscore);
-          }
-          for (let i = 0; i < tempDatasets.length; i++) {
-            tempDatasetbackcol.push(palete[i]);
-          }
-        }
-      } catch (error) {
-        console.log(error);
+      if (graphop === "상권지표") {
+        jsondata.push(listset[0].sang);
+      } else if (graphop === "집객력") {
+        jsondata.push(listset[0].people);
+      } else if (graphop === "구매력") {
+        jsondata.push(listset[0].Pur);
+      } else if (graphop === "성장성") {
+        jsondata.push(listset[0].sung);
       }
 
-      setData(
-        produce((draft) => {
-          draft.labels = tempLabels;
-          draft.datasets[0]["data"] = tempDatasets;
-          draft.datasets[0]["borderColor"] = tempDatasetbackcol;
-          draft.datasets[0]["backgroundColor"] = tempDatasetbackcol;
-          return draft;
-        })
-      );
+      const tempLabels = [];
+      const tempDatasets = [];
+      const tempDatasetbackcol = [];
+
+      if (jsondata.length !== 0) {
+        try {
+          if (jsondata.status !== 500) {
+            for (let i = 0; i < jsondata[0].length; i++) {
+              tempLabels.push(jsondata[0][i].gil);
+              tempDatasets.push(jsondata[0][i].totalscore);
+            }
+            for (let i = 0; i < tempDatasets.length; i++) {
+              tempDatasetbackcol.push(palete[0]);
+            }
+          }
+        } catch (error) {
+          console.log(error);
+        }
+
+        setData(
+          produce(draft => {
+            draft.labels = tempLabels;
+            draft.datasets[0]["data"] = tempDatasets;
+            draft.datasets[0]["borderColor"] = tempDatasetbackcol;
+            draft.datasets[0]["backgroundColor"] = tempDatasetbackcol;
+            return draft;
+          })
+        );
+      }
+    } catch (e) {
+      console.log(e);
     }
   }
   const palete = [
+    "rgb(55, 155, 255)",
     "rgb(255,155,255)",
     "rgb(255,55,255)",
     "rgb(55,155,255)",
@@ -96,7 +100,7 @@ function Graph(dong, fa) {
     "rgb(255,155,255)",
     "rgb(255,255,255)",
   ];
-  const graphlistop = (e) => {
+  const graphlistop = e => {
     setGraphop(e.target.value);
   };
   useEffect(() => {
@@ -105,7 +109,7 @@ function Graph(dong, fa) {
   return (
     <>
       <div className="graphlist">
-        <select onClick={graphlistop}>
+        <select onClick={graphlistop} className="lists">
           <option value=""></option>
           <option value="상권지표">상권지표</option>
           <option value="집객력">집객력</option>

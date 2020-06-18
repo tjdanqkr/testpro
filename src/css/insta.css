@@ -3,7 +3,7 @@
   padding-bottom: 16px;
   display: block;
   border-bottom: 1px solid #e1e4e8;
-  display: flex;
+  display: table;
 }
 
 .bar .lists {

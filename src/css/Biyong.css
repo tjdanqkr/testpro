@@ -3,6 +3,9 @@
     opacity: 0.9;
     margin: 11px;
     height: inherit;
+    
+    max-height: 85%;
+      
 }
 table {
     text-align: center;
