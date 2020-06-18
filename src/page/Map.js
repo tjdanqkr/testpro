@@ -96,7 +96,7 @@ function Map() {
             let i = 0;
             for (i = 0; i < jsondata.length; i++) {
               if (jsondata[i].dong === name) {
-                j++;
+                j = jsondata[i].count;
               }
             }
           }
