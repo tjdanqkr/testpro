@@ -2,12 +2,23 @@ import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import Axios from "axios";
 import produce from "immer";
-const Chuihyung = (dong, json) => {
+
+const Chuihyung = dong => {
   const palete = ["rgb(55, 155, 255)"];
-  const [dong1, setDong1] = useState("");
+  const [dong1, setDong1] = useState(dong.dong);
   const [chuidata, setChuidata] = useState();
   const [gil, setGil] = useState("");
   const [gillist, setGillist] = useState([]);
+
+  const makejson1 = async () => {
+    const post = {
+      dong: dong.dong,
+    };
+    await Axios.post("/api/chui", post).then(async function (res) {
+      await setChuidata(res.data);
+      await console.log(res.data);
+    });
+  };
 
   const [data, setData] = useState({
     labels: [],
@@ -35,6 +46,7 @@ const Chuihyung = (dong, json) => {
       },
     ],
   });
+
   const makejson = async () => {
     const post = {
       dong: dong.dong,
@@ -100,11 +112,8 @@ const Chuihyung = (dong, json) => {
 
   useEffect(() => {
     setDong1(dong.dong);
-
-    setChuidata(makejson());
-    console.log(dong1);
-    console.log(chuidata);
-  }, [dong]);
+    makejson1();
+  }, [dong.dong]);
   useEffect(() => {
     console.log(chuidata);
     if (chuidata !== undefined) {

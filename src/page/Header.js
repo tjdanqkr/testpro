@@ -65,6 +65,9 @@ function Header() {
       setHeader("onHeader");
     }
   };
+  const onclick4 = () => {
+    window.location.replace("/");
+  };
   const logout = () => {
     window.sessionStorage.removeItem("id");
     window.location.replace("/");
@@ -72,9 +75,10 @@ function Header() {
   return (
     <div className={header}>
       <div className="homebutton">
-        <Link to="/">
-          <GrHome></GrHome>
-        </Link>
+        <GrHome onClick={onclick4}></GrHome>
+      </div>
+      <div className="title2">
+        <p>서울시 커피직종 상권 분석</p>
       </div>
       <div className="actionbutton">
         {window.sessionStorage.getItem("id") === null ? (
@@ -93,7 +97,9 @@ function Header() {
       {joinstate ? <Join></Join> : <p></p>}
       {biyongst ? (
         <>
-          <FcCancel onClick={onclick3}></FcCancel>
+          <div className="cancle">
+            <FcCancel onClick={onclick3}></FcCancel>
+          </div>
           <Biyong></Biyong>
         </>
       ) : (

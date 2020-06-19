@@ -36,9 +36,7 @@ const Biyongop = dong => {
     };
     try {
       await Axios.post("/api/biyong1", post).then(async res => {
-        await console.log(res.data);
         await setJson1(res.data);
-        await console.log(2);
       });
     } catch (error) {
       console.log(error);
@@ -47,8 +45,7 @@ const Biyongop = dong => {
 
   useEffect(() => {
     a();
-  }, []);
-  useEffect(() => {}, [json1]);
+  }, [json1]);
 
   return (
     <>
@@ -91,7 +88,10 @@ const Biyongop = dong => {
                     <p>손익 분기 점: {bi} 만원</p>
                   </div>
                   <div className="dan">
-                    <p>카페 창업시 {(bi1 / dan) * 10000} 잔 팔아야 합니다!</p>
+                    <p>
+                      카페 창업시 {parseInt((bi1 / dan) * 10000)} 잔 팔아야
+                      합니다!
+                    </p>
                   </div>
                 </div>
               ) : (

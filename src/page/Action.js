@@ -71,21 +71,20 @@ const Action = (dong, fa) => {
       if (chui) {
         setChui(false);
       } else {
-        if (chuidata === undefined) {
-          const makejson = async () => {
-            const post = {
-              dong: dong.dong,
-            };
-            await Axios.post("/api/chui", post).then(async function (res) {
-              await setChuidata(res.data);
-              await console.log(res.data);
-            });
-          };
-          await makejson();
-        } else {
-          console.log(json);
-          await setChui(true);
-        }
+        // if (chuidata === undefined) {
+        //   const makejson = async () => {
+        //     const post = {
+        //       dong: dong.dong,
+        //     };
+        //     await Axios.post("/api/chui", post).then(async function (res) {
+        //       await setChuidata(res.data);
+        //       await console.log(res.data);
+        //     });
+        //   };
+        //   await makejson();
+        // } else {
+        await setChui(true);
+        // }
       }
     }
   };
@@ -164,24 +163,24 @@ const Action = (dong, fa) => {
       if (gilst) {
         setGilst(false);
       } else {
-        if (gildata === undefined) {
-          const makelist = async () => {
-            const post = {
-              dong: dong.dong,
-            };
-            try {
-              await Axios.post("/api/gil", post).then(async function (res) {
-                await setGildata(res.data);
-              });
-            } catch (error) {
-              console.log(error);
-            }
-          };
-          await makelist();
-        } else {
-          console.log(gildata);
-          await setGilst(true);
-        }
+        // if (gildata === undefined) {
+        //   const makelist = async () => {
+        //     const post = {
+        //       dong: dong.dong,
+        //     };
+        //     try {
+        //       await Axios.post("/api/gil", post).then(async function (res) {
+        //         await setGildata(res.data);
+        //       });
+        //     } catch (error) {
+        //       console.log(error);
+        //     }
+        //   };
+        // await makelist();
+        // } else {
+        console.log(gildata);
+        await setGilst(true);
+        // }
       }
     }
   };
@@ -190,33 +189,44 @@ const Action = (dong, fa) => {
       instast();
     }
   }, [json]);
-  useEffect(() => {
-    if (chuidata !== undefined) {
-      instast();
-    }
-  }, [chuidata]);
-  useEffect(() => {
-    if (gildata !== undefined && !gilst) {
-      dabongsta();
-    }
-    if (gilst && gildata !== undefined) {
-      setGildata();
-      setGilst(false);
-    }
 
-    console.log(gilst);
-  }, [gildata, dong.dong]);
+  // useEffect(() => {
+  //   if (gildata !== undefined && !gilst) {
+  //     dabongsta();
+  //   }
+  //   if (gilst && gildata !== undefined) {
+  //     setGildata();
+  //     setGilst(false);
+  //   }
+
+  //   console.log(gilst);
+  // }, [gildata]);
   return (
     <div className="Action">
       <div className="sel">
         {dong.dong === "" ? <p>동을 선택해주세요</p> : <p>{dong.dong}</p>}
 
         <div className="icons">
-          <BsBarChartFill onClick={graph}></BsBarChartFill>
-          <BsClipboard onClick={biyongsta}></BsClipboard>
-          <FiInstagram onClick={instast}></FiInstagram>
-          <FaRegThumbsUp onClick={dabongsta}></FaRegThumbsUp>
-          <BsGraphUp onClick={chuist}></BsGraphUp>
+          <div className="li" onClick={graph}>
+            <BsBarChartFill></BsBarChartFill>
+            <p>상권 통계지표</p>
+          </div>
+          <div className="li" onClick={biyongsta}>
+            <BsClipboard></BsClipboard>
+            <p>수익성 분석</p>
+          </div>
+          <div className="li" onClick={instast}>
+            <FiInstagram></FiInstagram>
+            <p>SNS 통계지표</p>
+          </div>
+          <div className="li" onClick={dabongsta}>
+            <FaRegThumbsUp></FaRegThumbsUp>
+            <p>길 추천</p>
+          </div>
+          <div className="li" onClick={chuist}>
+            <BsGraphUp></BsGraphUp>
+            <p>추이 분석</p>
+          </div>
         </div>
         {/* {fa.fa !== "" && dong.dong !== "" ? (
           <p></p>
@@ -251,7 +261,7 @@ const Action = (dong, fa) => {
       )}
       {chui ? (
         <div className="option">
-          <Chuihyung dong={dong.dong} json={json}></Chuihyung>
+          <Chuihyung dong={dong.dong}></Chuihyung>
         </div>
       ) : (
         <p></p>

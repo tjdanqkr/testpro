@@ -64,7 +64,6 @@ function Biyong() {
             <tr>
               <th className="title">
                 <p>초기 투자비용</p>
-                <FiArrowRightCircle onClick={OnSubmit}></FiArrowRightCircle>
               </th>
             </tr>
           </thead>
@@ -91,7 +90,9 @@ function Biyong() {
                   onChange={e => setB(e.target.value)}
                 ></input>
               </th>
-              <th className="text">대출금/이자(월간)</th>
+              <th className="text">
+                <p>대출금/이자(월간)</p>
+              </th>
               <th colSpan="2" className="inputt">
                 <input
                   type="text"
@@ -246,6 +247,14 @@ function Biyong() {
                   name="danga"
                   onChange={e => setDanga(e.target.value)}
                 ></input>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                <div>
+                  <p>제출하기</p>
+                  <FiArrowRightCircle onClick={OnSubmit}></FiArrowRightCircle>
+                </div>
               </th>
             </tr>
           </tbody>

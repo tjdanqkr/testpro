@@ -108,24 +108,38 @@ function Graph(dong, fa) {
   }, [graphop, dong.dong]);
   return (
     <>
+      <p>{dong.dong + " " + graphop}</p>
       <div className="graphlist">
-        <select onClick={graphlistop} className="lists">
+        <button className="lists" onClick={graphlistop} value="상권지표">
+          상권지표
+        </button>
+        <button className="lists" onClick={graphlistop} value="집객력">
+          집객력
+        </button>
+        <button className="lists" onClick={graphlistop} value="구매력">
+          구매력
+        </button>
+        <button className="lists" onClick={graphlistop} value="성장성">
+          성장성
+        </button>
+
+        {/* <select onClick={graphlistop} className="lists">
           <option value=""></option>
           <option value="상권지표">상권지표</option>
           <option value="집객력">집객력</option>
           <option value="구매력">구매력</option>
           <option value="성장성">성장성</option>
-        </select>
+        </select> */}
       </div>
       <div className="graph">
         <Bar
-          width={300}
-          height={300}
+          width={250}
+          height={200}
           data={data}
           options={{
             title: {
               display: true,
-              text: dong.dong + " " + graphop,
+              // text: dong.dong + " " + graphop,
               fontSize: 20,
             },
             scales: {

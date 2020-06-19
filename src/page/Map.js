@@ -367,7 +367,8 @@ function Map() {
     }
   };
   const onsel9 = async e => {
-    if (setBtn9 === "btn") {
+    console.log("핫원");
+    if (btn9 === "btn") {
       setBtn1("btn");
       setBtn2("btn");
       setBtn3("btn");
@@ -443,8 +444,8 @@ function Map() {
         <button className={btn8} onClick={onsel8} value="패스트푸드">
           패스트푸드
         </button>
-        <button className={btn9} onClick={onsel9} value="학원">
-          학원
+        <button className={btn9} onClick={onsel9} value="학원(종합)">
+          학원(종합)
         </button>
         <button className={btn10} onClick={onsel10} value="안경원">
           안경원

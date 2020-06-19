@@ -4,7 +4,7 @@
   z-index: 3;
   width: 100%;
   opacity: 0.9;
-  height: 50px;
+  height: 80px;
   background-color: grey;
   
 }
@@ -18,20 +18,32 @@
   
   background-color: grey;
 }
+
 .Header svg {
   width: 50px;
   height: 50px;
-
+  padding: 12px 12px;
 }
 .onHeader svg {
   width: 50px;
   height: 50px;
+  padding: 12px 12px;
 }
 .homebutton {
   position: absolute;
   left: 5%;
 }
 .actionbutton {
+  right: 5%;
+  position: absolute;
+  top: 0%;
+}
+.title2{
+  padding: 12px;
+}
+
+.cancle{
+  z-index: 5  ;
   position: absolute;
   right: 5%;
 }
