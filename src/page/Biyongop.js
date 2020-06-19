@@ -11,14 +11,16 @@ const Biyongop = dong => {
   const [ma2020, setMa2020] = useState("");
   const [dan, setDan] = useState("");
   const [bi, setBi] = useState("");
+  const [bi1, setBi1] = useState("");
   const [key1, setKey1] = useState();
   async function b(key1) {
     console.log(key1);
     for (let i = 0; i < json1.length; i++) {
       if (json1[i].gil === key1) {
         await setBi(json1[i].hap);
-        await setMa2019(json1[i].m2019);
-        await setMa2020(json1[i].m2020);
+        await setBi1(json1[i].hap1);
+        await setMa2019(json1[i].월별2019매출예측);
+        await setMa2020(json1[i].월별2020매출예측);
         await setDan(json1[i].danga);
       }
     }
@@ -69,32 +71,27 @@ const Biyongop = dong => {
               {ma2019 !== "" ? (
                 <div className="table">
                   <div className="jun">
-                    <p>전년도 매출액</p>
-                    <p>{ma2019.substring(0, ma2019.length - 4) + "만원"}</p>
+                    <p>전년도 월평균 매출액</p>
+                    <p>{ma2019 + "원"}</p>
                   </div>
                   <div className="hu">
-                    <p>금년도 예상 매출액</p>
-                    <p>{ma2020.substring(0, ma2020.length - 4) + "만원"}</p>
+                    <p>금년도 월평균 예상 매출액</p>
+                    <p>{ma2020 + "원"}</p>
                   </div>
                   <div className="chong">
                     <p>나의 총 지출액</p>
-                    <p>{bi.substring(0, bi.length - 5) + "만원"}</p>
+                    <p>{bi + "만원"}</p>
                   </div>
                   <div className="su">
                     <p>
-                      수입률 예측:{" "}
-                      {parseInt(
-                        parseInt(ma2020.substring(0, ma2020.length - 4) / 12) /
-                          bi.substring(0, bi.length - 5)
-                      )}{" "}
-                      %
+                      수입률 예측: {parseInt(parseInt(ma2020 / 12) / bi1)} %
                     </p>
                   </div>
                   <div className="son">
-                    <p>손익 분기 점: {bi.substring(0, bi.length - 5)} 만원</p>
+                    <p>손익 분기 점: {bi} 만원</p>
                   </div>
                   <div className="dan">
-                    <p>카페 창업시 {(bi / dan) * 10000} 잔 팔아야 합니다!</p>
+                    <p>카페 창업시 {(bi1 / dan) * 10000} 잔 팔아야 합니다!</p>
                   </div>
                 </div>
               ) : (
