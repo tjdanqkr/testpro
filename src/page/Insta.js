@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { produce } from "immer";
-import { Bar } from "react-chartjs-2";
+import { Bar, Pie } from "react-chartjs-2";
 import "../css/insta.css";
 
 function insta(json1) {
@@ -12,13 +12,14 @@ function insta(json1) {
   const [jsondata, setJsondata] = useState();
   const [load, setLoad] = useState(false);
   const [json, setJson] = useState();
+  const [diningcode, setDiningcode] = useState();
   const [data, setData] = useState({
     labels: [],
     datasets: [
       {
         label: [],
         backgroundColor: [],
-        borderColor: [],
+        hoverBackgroundColor: [],
         borderWidth: 2,
         data: [],
       },
@@ -65,12 +66,17 @@ function insta(json1) {
       if (jsondata.length !== 0) {
         if (jsondata.status !== 500) {
           for (let i = 0; i < jsondata.length; i++) {
-            tempLabels.push(jsondata[i].tag);
+            if (jsondata[i].tag === undefined) {
+              tempLabels.push(jsondata[i].dong);
+            } else {
+              tempLabels.push(jsondata[i].tag);
+            }
+
             tempDatasets.push(jsondata[i].count);
-            console.log(jsondata[i].tag);
+            //console.log(jsondata[i].tag);
           }
           for (let i = 0; i < tempDatasets.length; i++) {
-            tempDatasetbackcol.push(palete[0]);
+            tempDatasetbackcol.push(palete[i]);
           }
         }
       }
@@ -79,7 +85,7 @@ function insta(json1) {
         produce(draft => {
           draft.labels = tempLabels;
           draft.datasets[0]["data"] = tempDatasets;
-          draft.datasets[0]["borderColor"] = tempDatasetbackcol;
+          draft.datasets[0]["hoverBackgroundColor"] = tempDatasetbackcol;
           draft.datasets[0]["backgroundColor"] = tempDatasetbackcol;
           return draft;
         })
@@ -94,6 +100,18 @@ function insta(json1) {
       await setJson(res.data);
     });
   };
+  const diningdate = async () => {
+    const post = {
+      gu: diningcode,
+    };
+    Axios.post("/api/dining", post).then(async function (res) {
+      await setJsondata(res.data);
+      console.log(res.data);
+    });
+  };
+  const dining = async e => {
+    setDiningcode(e.target.value);
+  };
   // useEffect(() => {
   //   statera();
   //   console.log(load);
@@ -102,7 +120,18 @@ function insta(json1) {
   const onClick = () => {
     setLoad(true);
   };
-
+  useEffect(() => {
+    diningdate();
+  }, [diningcode]);
+  useEffect(() => {
+    if (
+      date1.substring(date2.length - 2, date2.length) >
+      date2.substring(date2.length - 2, date2.length)
+    ) {
+      alert("date2 가 작습니다.");
+      setDate2("");
+    }
+  }, [date1, date2]);
   useEffect(() => {
     if (words && date1 && date2 !== "") {
       setjson();
@@ -115,21 +144,16 @@ function insta(json1) {
   }, [jsondata]);
 
   const palete = [
-    "rgb(55, 155, 255)",
-    "rgb(255,155,255)",
-    "rgb(255,55,255)",
-    "rgb(55,155,255)",
-    "rgb(55,0,255)",
-    "rgb(0,0,155)",
-    "rgb(0,0,55)",
-    "rgb(0,0,0)",
-    "rgb(0,255,0)",
-    "rgb(55,255,0)",
-    "rgb(255,0,155)",
-    "rgb(255,55,55)",
-    "rgb(255,55,155)",
-    "rgb(255,155,255)",
-    "rgb(255,255,255)",
+    "#01579B",
+    "#0277BD",
+    "#0288D1",
+    "#039BE5",
+    "#03A9F4",
+    "#29B6F6",
+    "#4FC3F7",
+    "#81D4FA",
+    "#B3E5FC",
+    "#E1F5FE",
   ];
   return (
     <div className="insta">
@@ -182,13 +206,19 @@ function insta(json1) {
             <></>
           )}
         </select>
+        <select className="lists" onClick={dining}>
+          <option> 다이닝 코드</option>
+          <option value="마포구">마포구</option>
+          <option value="송파구">송파구</option>
+          <option value="강남구">강남구</option>
+        </select>
         {/* <button onClick={onClick}>클릭</button> */}
       </div>
       <div className="graph">
         {jsondata !== undefined ? (
-          <Bar
-            width={300}
-            height={300}
+          <Pie
+            width={250}
+            height={200}
             data={data}
             options={{
               title: {
@@ -211,7 +241,7 @@ function insta(json1) {
                 position: "right",
               },
             }}
-          ></Bar>
+          ></Pie>
         ) : (
           <p>로딩중...</p>
         )}

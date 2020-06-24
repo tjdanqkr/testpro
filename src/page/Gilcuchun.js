@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
+import "../css/Gilcuchen.css";
 
 const Gilcuchun = dong => {
   const [list, setList] = useState();
@@ -45,14 +46,25 @@ const Gilcuchun = dong => {
         <></>
       )} */}
       {list !== undefined ? (
-        <div>
-          <p>1</p>
-          {list.map(i => (
-            <p key={i.gil}>
-              {" "}
-              {i.gil} {i.avg평균매출}
-            </p>
-          ))}
+        <div className="cuchun">
+          <div className="af">
+            <p>순위</p>
+            {list.map((i, index) => (
+              <p key={i.gil}> {index + 1}</p>
+            ))}
+          </div>
+          <div class="gname">
+            <p>길 이름</p>
+            {list.map(i => (
+              <p key={i.gil}> {i.gil}</p>
+            ))}
+          </div>
+          <div className="avg">
+            <p>평균 매출</p>
+            {list.map(i => (
+              <p key={i.gil}> {parseInt(i.avg평균매출)}</p>
+            ))}
+          </div>
         </div>
       ) : (
         <></>
