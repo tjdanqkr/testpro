@@ -1,50 +1,52 @@
-.box{
-    background-color: azure;
-    opacity: 0.9;
-    margin: 11px;
-    height: inherit;
-    
-    max-height: 85%;
-      
+.box {
+  background-color: azure;
+  opacity: 0.9;
+  margin: 11px;
+  height: inherit;
+
+  max-height: 100%;
 }
 table {
-    text-align: center;
-    font-family: "Malgun Gothic", Helvetica, Arial, sans-serif;
-    width: 100%;
-    max-width: 100%;
-    margin-bottom: 10px;
-    font-size: 13px;
-  }
-  table input {
-    width: 100%;
-    border: 1px solid #d0d0d6;
-    max-height: fit-content;
-    font-size: x-large;
-  }
-  tr {
-    display: flex;
-    width: 100%;
-  }
-  th {
-    border: 1px solid #d0d0d6;
-    display: flex;
-    width: 100%;
-  }
-  .title {
-    width: 100%;
-    display: flex;
-    background-color: #f9f9f9;
-    font-weight: 700;
-  }
-  .text {
-    text-align: center;
-    display: block;
-    font-weight: 700;
-  }
-  .inputt {
-    background-color: #ffffff;
-    font-weight: 700;
-  }
-  table p{
-      font-size: 25px;
-  }
+  text-align: center;
+  font-family: "Malgun Gothic", Helvetica, Arial, sans-serif;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+table input {
+  width: 100%;
+  border: 1px solid #d0d0d6;
+  max-height: fit-content;
+  font-size: x-large;
+}
+tr {
+  display: flex;
+  width: 100%;
+}
+th {
+  border: 1px solid #d0d0d6;
+  display: flex;
+  width: 100%;
+}
+.title {
+  width: 100%;
+  display: flex;
+  background-color: #f9f9f9;
+  font-weight: 700;
+}
+.text {
+  text-align: center;
+  display: block;
+  font-weight: 700;
+}
+.inputt {
+  background-color: #ffffff;
+  font-weight: 700;
+}
+table p {
+  font-size: 25px;
+}
+.end {
+  display: contents;
+}

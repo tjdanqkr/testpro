@@ -19,7 +19,7 @@ function Biyong() {
   const [gita2, setGita2] = useState(0);
   const [danga, setDanga] = useState(0);
 
-  const OnSubmit = e => {
+  const OnSubmit = (e) => {
     const post = {
       id: window.sessionStorage.getItem("id"),
       g: g,
@@ -47,8 +47,8 @@ function Biyong() {
         },
         body: JSON.stringify(post),
       })
-        .then(response => response.text())
-        .then(message => {
+        .then((response) => response.text())
+        .then((message) => {
           console.log(message);
           window.location.replace("/");
         });
@@ -77,7 +77,7 @@ function Biyong() {
                 <input
                   type="text"
                   name="g"
-                  onChange={e => setG(e.target.value)}
+                  onChange={(e) => setG(e.target.value)}
                 ></input>
               </th>
               <th className="text">
@@ -87,7 +87,7 @@ function Biyong() {
                 <input
                   type="text"
                   name="b"
-                  onChange={e => setB(e.target.value)}
+                  onChange={(e) => setB(e.target.value)}
                 ></input>
               </th>
               <th className="text">
@@ -97,13 +97,13 @@ function Biyong() {
                 <input
                   type="text"
                   name="d"
-                  onChange={e => setD(e.target.value)}
+                  onChange={(e) => setD(e.target.value)}
                 ></input>
                 <p>만원</p>
                 <input
                   type="text"
                   name="i"
-                  onChange={e => setI(e.target.value)}
+                  onChange={(e) => setI(e.target.value)}
                 ></input>
                 <p>%</p>
               </th>
@@ -119,21 +119,21 @@ function Biyong() {
                 <input
                   type="text"
                   name="build"
-                  onChange={e => setBuild(e.target.value)}
+                  onChange={(e) => setBuild(e.target.value)}
                 ></input>
                 <p>인테리어비</p>
                 {"\t"}
                 <input
                   type="text"
                   name="inte"
-                  onChange={e => setInte(e.target.value)}
+                  onChange={(e) => setInte(e.target.value)}
                 ></input>
                 <p>설비비</p>
                 {"\t"}
                 <input
                   type="text"
                   name="sul"
-                  onChange={e => setSul(e.target.value)}
+                  onChange={(e) => setSul(e.target.value)}
                 ></input>
               </th>
             </tr>
@@ -145,14 +145,14 @@ function Biyong() {
                 <input
                   type="text"
                   name="ga"
-                  onChange={e => setGa(e.target.value)}
+                  onChange={(e) => setGa(e.target.value)}
                 ></input>
                 <p>기타비용</p>
                 {"\t"}
                 <input
                   type="text"
                   name="gi"
-                  onChange={e => setGita(e.target.value)}
+                  onChange={(e) => setGita(e.target.value)}
                 ></input>
               </th>
             </tr>
@@ -171,13 +171,13 @@ function Biyong() {
                 <input
                   type="text"
                   name="chong"
-                  onChange={e => setChong(e.target.value)}
+                  onChange={(e) => setChong(e.target.value)}
                 ></input>
                 <p>만원</p>
                 <input
                   type="text"
                   name="year"
-                  onChange={e => setYear(e.target.value)}
+                  onChange={(e) => setYear(e.target.value)}
                 ></input>
                 <p>년</p>
               </th>
@@ -199,7 +199,7 @@ function Biyong() {
                 <input
                   type="text"
                   name="month"
-                  onChange={e => setMonth(e.target.value)}
+                  onChange={(e) => setMonth(e.target.value)}
                 ></input>
               </th>
               <th className="text">
@@ -209,7 +209,7 @@ function Biyong() {
                 <input
                   type="text"
                   name="ingun"
-                  onChange={e => setIngun(e.target.value)}
+                  onChange={(e) => setIngun(e.target.value)}
                 ></input>
               </th>
             </tr>
@@ -222,7 +222,7 @@ function Biyong() {
                 <input
                   type="text"
                   name="zeryo"
-                  onChange={e => setZeryo(e.target.value)}
+                  onChange={(e) => setZeryo(e.target.value)}
                 ></input>
               </th>
               <th className="text">
@@ -232,7 +232,7 @@ function Biyong() {
                 <input
                   type="text"
                   name="gita2"
-                  onChange={e => setGita2(e.target.value)}
+                  onChange={(e) => setGita2(e.target.value)}
                 ></input>
               </th>
             </tr>
@@ -245,13 +245,13 @@ function Biyong() {
                 <input
                   type="text"
                   name="danga"
-                  onChange={e => setDanga(e.target.value)}
+                  onChange={(e) => setDanga(e.target.value)}
                 ></input>
               </th>
             </tr>
             <tr>
               <th>
-                <div>
+                <div className="end">
                   <p>제출하기</p>
                   <FiArrowRightCircle onClick={OnSubmit}></FiArrowRightCircle>
                 </div>

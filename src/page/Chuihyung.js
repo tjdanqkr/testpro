@@ -3,7 +3,7 @@ import { Line } from "react-chartjs-2";
 import Axios from "axios";
 import produce from "immer";
 
-const Chuihyung = dong => {
+const Chuihyung = (dong) => {
   const palete = ["rgb(55, 155, 255)"];
   const [dong1, setDong1] = useState(dong.dong);
   const [chuidata, setChuidata] = useState();
@@ -68,7 +68,7 @@ const Chuihyung = dong => {
     }
     await setGillist(list);
   };
-  const gilst = async e => {
+  const gilst = async (e) => {
     await setGil(e.target.value);
   };
 
@@ -83,7 +83,10 @@ const Chuihyung = dong => {
           for (let i = 0; i < chuidata.length; i++) {
             if (gil === chuidata[i].상권_코드_명) {
               tempLabels.push(
-                chuidata[i].기준_년_코드 + (chuidata[i].기준_분기_코드 - 1) / 4
+                chuidata[i].기준_년_코드 +
+                  "년 " +
+                  chuidata[i].기준_분기_코드 +
+                  "분기"
               );
               tempDatasets.push(parseInt(chuidata[i].분기별_매출));
               //console.log(chuidata[i].분기별_매출);
@@ -96,7 +99,7 @@ const Chuihyung = dong => {
       }
 
       setData(
-        produce(draft => {
+        produce((draft) => {
           draft.datasets[0]["label"] = gil;
           draft.labels = tempLabels;
           draft.datasets[0]["data"] = tempDatasets;
@@ -127,7 +130,7 @@ const Chuihyung = dong => {
     <div>
       <select onClick={gilst} className="lists">
         <option></option>
-        {gillist.map(gill => {
+        {gillist.map((gill) => {
           return (
             <option key={gill} value={gill}>
               {gill}

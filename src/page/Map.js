@@ -175,7 +175,7 @@ function Map() {
     console.log(dong);
   };
 
-  const josndatamake = async e => {
+  const josndatamake = async (e) => {
     const post = {
       classes: e,
     };
@@ -188,15 +188,16 @@ function Map() {
         },
         body: JSON.stringify(post),
       })
-        .then(response => response.text())
+        .then((response) => response.text())
         .then(async function (message) {
+          console.log(message);
           await setJsondata(JSON.parse(message));
         });
     } catch (error) {
       console.log(error);
     }
   };
-  const onsel1 = async e => {
+  const onsel1 = async (e) => {
     if (btn1 === "btn") {
       setBtn10("btn");
       setBtn2("btn");
@@ -219,7 +220,7 @@ function Map() {
       await setFa("");
     }
   };
-  const onsel2 = async e => {
+  const onsel2 = async (e) => {
     if (btn2 === "btn") {
       setBtn1("btn");
       setBtn10("btn");
@@ -240,7 +241,7 @@ function Map() {
       setBtn2("btn");
     }
   };
-  const onsel3 = async e => {
+  const onsel3 = async (e) => {
     if (btn3 === "btn") {
       setBtn1("btn");
       setBtn2("btn");
@@ -261,7 +262,7 @@ function Map() {
       setBtn3("btn");
     }
   };
-  const onsel4 = async e => {
+  const onsel4 = async (e) => {
     if (btn4 === "btn") {
       setBtn1("btn");
       setBtn2("btn");
@@ -282,7 +283,7 @@ function Map() {
       setBtn4("btn");
     }
   };
-  const onsel5 = async e => {
+  const onsel5 = async (e) => {
     if (btn5 === "btn") {
       setBtn1("btn");
       setBtn2("btn");
@@ -303,7 +304,7 @@ function Map() {
       setBtn5("btn");
     }
   };
-  const onsel6 = async e => {
+  const onsel6 = async (e) => {
     if (btn6 === "btn") {
       setBtn1("btn");
       setBtn2("btn");
@@ -324,7 +325,7 @@ function Map() {
       setBtn6("btn");
     }
   };
-  const onsel7 = async e => {
+  const onsel7 = async (e) => {
     if (btn7 === "btn") {
       setBtn1("btn");
       setBtn2("btn");
@@ -345,7 +346,7 @@ function Map() {
       setBtn7("btn");
     }
   };
-  const onsel8 = async e => {
+  const onsel8 = async (e) => {
     if (btn8 === "btn") {
       setBtn1("btn");
       setBtn2("btn");
@@ -366,7 +367,7 @@ function Map() {
       setBtn8("btn");
     }
   };
-  const onsel9 = async e => {
+  const onsel9 = async (e) => {
     console.log("핫원");
     if (btn9 === "btn") {
       setBtn1("btn");
@@ -393,7 +394,7 @@ function Map() {
   //   // 무언가 실행함
   // },[??])
 
-  const onsel10 = async e => {
+  const onsel10 = async (e) => {
     if (btn10 === "btn") {
       setBtn1("btn");
       setBtn2("btn");
@@ -414,7 +415,7 @@ function Map() {
       setBtn10("btn");
     }
   };
-  const OnSubmit = e => {};
+  const OnSubmit = (e) => {};
   return (
     <>
       <div className="map" id="map"></div>

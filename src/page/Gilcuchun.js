@@ -17,6 +17,7 @@ const Gilcuchun = dong => {
     try {
       await Axios.post("/api/gil", post).then(async function (res) {
         await setList(res.data);
+        console.log(res.data);
         return res.data;
       });
     } catch (error) {
@@ -60,9 +61,9 @@ const Gilcuchun = dong => {
             ))}
           </div>
           <div className="avg">
-            <p>평균 매출</p>
+            <p>가중 평균 매출 대비 커피 매출 비율</p>
             {list.map(i => (
-              <p key={i.gil}> {parseInt(i.avg평균매출)}</p>
+              <p key={i.gil}> {parseInt(i.coffee평균매출)}%</p>
             ))}
           </div>
         </div>
